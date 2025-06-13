@@ -2,15 +2,6 @@ import re
 import os
 
 def cleaning(text: str) -> str:
-    """
-    Pulisce il testo rimuovendo riferimenti, piè di pagina e righe indesiderate.
-    
-    Args:
-        text (str): Testo da pulire
-        
-    Returns:
-        str: Testo pulito
-    """
     # Rimozione sezione References
     text = re.split(r'(?i)\n+references\n+', text)[0]   
     
@@ -30,23 +21,18 @@ def cleaning(text: str) -> str:
 
 def clean_text_file(input_path: str, output_path: str) -> None:
     try:
-        # Verifica che il file di input esista
         if not os.path.exists(input_path):
             raise FileNotFoundError(f"File non trovato: {input_path}")
         
-        # Crea la directory di output se non esiste
         output_dir = os.path.dirname(output_path)
         if output_dir and not os.path.exists(output_dir):
             os.makedirs(output_dir)
-        
-        # Leggi il file
+    
         with open(input_path, 'r', encoding='utf-8') as f:
             raw_text = f.read()
-        
-        # Pulisci il testo
+    
         cleaned = cleaning(raw_text)
         
-        # Salva il risultato
         with open(output_path, 'w', encoding='utf-8') as f:
             f.write(cleaned)
         
@@ -55,14 +41,13 @@ def clean_text_file(input_path: str, output_path: str) -> None:
     except Exception as e:
         print(f"[ERROR] Errore durante la pulizia del file: {e}")
 
-# Esempio di utilizzo
+
 if __name__ == "__main__":
     # Test della funzione
     sample_text = """
-    Questo è un testo di esempio.
-    
+    Questo è un testo di esempio.    
     Page 1
-    
+
     Contenuto principale del documento.
     Altra riga importante.
     
@@ -71,10 +56,8 @@ if __name__ == "__main__":
     !!!
     
     References
-    
     [1] Riferimento da rimuovere
-    """
-    
-    cleaned = clean_text(sample_text)
+    """    
+    cleaned = cleaning(sample_text)
     print("Testo pulito:")
     print(cleaned)
