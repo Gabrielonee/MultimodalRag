@@ -1,0 +1,35 @@
+This is also one
+of the greatest advantages of using on-premise LLMs. When
+LLMs lack data in a specific domain, additional knowledge can
+be provided to the LLM through fine-tuning. Huggingface’s
+fine-tuning data can also be used as an initial step. Another benefit of fine-tuning is the ability to adjust the
+model’s input and output. For example, it can enable LLM to
+adapt to specific data formats and generate responses in a par-
+ticular style as instructed [37]. For retrieval tasks that engage
+with structured data, the SANTA framework [76] implements
+a tripartite training regimen to effectively encapsulate both
+structural and semantic nuances. The initial phase focuses on
+the retriever, where contrastive learning is harnessed to refine
+the query and document embeddings. Aligning LLM outputs with human or retriever preferences
+through reinforcement learning is a potential approach. For
+instance, manually annotating the final generated answers
+and then providing feedback through reinforcement learning. In addition to aligning with human preferences, it is also
+possible to align with the preferences of fine-tuned models
+and retrievers [79]. When circumstances prevent access to
+powerful proprietary models or larger parameter open-source
+models, a simple and effective method is to distill the more
+powerful models(e.g. GPT-4). Fine-tuning of LLM can also
+be coordinated with fine-tuning of the retriever to align pref-
+erences. A typical approach, such as RA-DIT [27], aligns the
+scoring functions between Retriever and Generator using KL
+divergence. V. AUGMENTATION PROCESS IN RAG
+In the domain of RAG, the standard practice often involves
+a singular (once) retrieval step followed by generation, which
+can lead to inefficiencies and sometimes is typically insuffi-
+cient for complex problems demanding multi-step reasoning,
+as it provides a limited scope of information [105]. Many
+studies have optimized the retrieval process in response to this
+issue, and we have summarised them in Figure 5. A. Iterative Retrieval
+Iterative retrieval is a process where the knowledge base
+is repeatedly searched based on the initial query and the text
+generated so far, providing a more comprehensive knowledge

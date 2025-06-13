@@ -1,0 +1,33 @@
+--- Page 12 ---
+probability of generated terms [24]. When the probability falls
+below a certain threshold would activates the retrieval system
+to collect relevant information, thus optimizing the retrieval
+cycle. Self-RAG [25] introduces “reflection tokens” that allow
+the model to introspect its outputs. These tokens come in
+two varieties: “retrieve” and “critic”. The model autonomously
+decides when to activate retrieval, or alternatively, a predefined
+threshold may trigger the process. During retrieval, the gen-
+erator conducts a fragment-level beam search across multiple
+paragraphs to derive the most coherent sequence. Critic scores
+are used to update the subdivision scores, with the flexibility
+to adjust these weights during inference, tailoring the model’s
+behavior. Self-RAG’s design obviates the need for additional
+classifiers or reliance on Natural Language Inference (NLI)
+models, thus streamlining the decision-making process for
+when to engage retrieval mechanisms and improving the
+model’s autonomous judgment capabilities in generating ac-
+curate responses.
+VI. TASK AND EVALUATION
+The rapid advancement and growing adoption of RAG
+in the field of NLP have propelled the evaluation of RAG
+models to the forefront of research in the LLMs community.
+The primary objective of this evaluation is to comprehend
+and optimize the performance of RAG models across diverse
+application scenarios.This chapter will mainly introduce the
+main downstream tasks of RAG, datasets, and how to evaluate
+RAG systems.
+A. Downstream Task
+The core task of RAG remains Question Answering (QA),
+
+traditional
+single-hop/multi-hop

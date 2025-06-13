@@ -1,0 +1,45 @@
+1) Reranking: Reranking fundamentally reorders document
+chunks to highlight the most pertinent results first, effectively
+reducing the overall document pool, severing a dual purpose
+in information retrieval, acting as both an enhancer and a
+filter, delivering refined inputs for more precise language
+model processing [70]. Reranking can be performed using
+rule-based methods that depend on predefined metrics like
+Diversity, Relevance, and MRR, or model-based approaches
+like Encoder-Decoder models from the BERT series (e.g.,
+SpanBERT), specialized reranking models such as Cohere
+rerank or bge-raranker-large, and general large language mod-
+els like GPT [12], [99]. 2) Context Selection/Compression: A common misconcep-
+tion in the RAG process is the belief that retrieving as many
+relevant documents as possible and concatenating them to form
+a lengthy retrieval prompt is beneficial. However, excessive
+context can introduce more noise, diminishing the LLM’s
+perception of key information . (Long) LLMLingua [100], [101] utilize small language
+models (SLMs) such as GPT-2 Small or LLaMA-7B, to
+detect and remove unimportant tokens, transforming it into
+a form that is challenging for humans to comprehend but
+well understood by LLMs. This approach presents a direct
+and practical method for prompt compression, eliminating the
+need for additional training of LLMs while balancing language
+integrity and compression ratio. PRCA tackled this issue by
+training an information extractor [69]. Similarly, RECOMP
+adopts a comparable approach by training an information
+condenser using contrastive learning [71]. Each training data
+point consists of one positive sample and five negative sam-
+ples, and the encoder undergoes training using contrastive loss
+throughout this process [102] . In addition to compressing the context, reducing the num-
+ber of documents aslo helps improve the accuracy of the
+model’s answers. Ma et al. [103] propose the “Filter-Reranker”
+paradigm, which combines the strengths of LLMs and SLMs. In this paradigm, SLMs serve as filters, while LLMs function
+as reordering agents. The research shows that instructing
+LLMs to rearrange challenging samples identified by SLMs
+leads to significant improvements in various Information
+Extraction (IE) tasks. Another straightforward and effective
+approach involves having the LLM evaluate the retrieved
+content before generating the final answer. This allows the
+LLM to filter out documents with poor relevance through LLM
+critique. For instance, in Chatlaw [104], the LLM is prompted
+to self-suggestion on the referenced legal provisions to assess
+their relevance. B. LLM Fine-tuning
+Targeted fine-tuning based on the scenario and data char-
+acteristics on LLMs can yield better results.

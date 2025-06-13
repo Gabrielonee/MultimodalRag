@@ -1,0 +1,140 @@
+RA-e2e [46]
+Dataset-base
+
+PROMPTAGATOR [21]
+
+MSMARCO,Wikipedia
+
+RA-DIT [27]
+Common Crawl,Wikipedia
+
+RAG-Robust [48]
+
+RA-Long-Form [49]
+Dataset-base
+
+Self-RAG [25]
+
+Token-Elimination [52]
+
+PaperQA [53]
+Arxiv,Online Database,PubMed
+
+NoiseRAG [54]
+FactoidWiki
+
+Search Engine,Wikipedia
+
+NoMIRACL [56]
+
+Search Engine,Wikipedia
+
+Dataset-base,Wikipedia
+
+RAG-LongContext [60]
+Dataset-base
+
+ITER-RETGEN [14]
+
+LLM-Knowledge-Boundary [62]
+
+RAPTOR [63]
+Dataset-base
+
+RECITE [22]
+
+ICRALM [64]
+Pile,Wikipedia
+
+Retrieve-and-Sample [65]
+Dataset-base
+
+1-PAGER [68]
+
+Dataset-base
+
+QLM-Doc-ranking [70]
+Dataset-base
+
+Recomp [71]
+
+RePLUG [72]
+
+ARM-RAG [73]
+Dataset-base
+
+GenRead [13]
+
+UniMS-RAG [74]
+Dataset-base
+
+CREA-ICL [19]
+Dataset-base
+Crosslingual,Text
+
+Tabular,Text
+
+Dataset-base
+
+Pre-training
+
+MK-ToD [78]
+Dataset-base
+
+Dual-Feedback-ToD [79]
+Dataset-base
+
+Entity Sequence
+
+KnowledGPT [15]
+Dataset-base
+
+FABULA [80]
+Dataset-base,Graph
+
+G-Retriever [84]
+Dataset-base
+
+--- Page 7 ---
+Fig. 4. RAG compared with other model optimization methods in the aspects of “External Knowledge Required” and “Model Adaption Required”. Prompt
+Engineering requires low modifications to the model and external knowledge, focusing on harnessing the capabilities of LLMs themselves. Fine-tuning, on
+the other hand, involves further training the model. In the early stages of RAG (Naive RAG), there is a low demand for model modifications. As research
+progresses, Modular RAG has become more integrated with fine-tuning techniques.
+Unstructured Data, such as text, is the most widely used
+retrieval source, which are mainly gathered from corpus. For
+open-domain question-answering (ODQA) tasks, the primary
+retrieval sources are Wikipedia Dump with the current major
+versions including HotpotQA 4 (1st October , 2017), DPR5 (20
+December, 2018). In addition to encyclopedic data, common
+unstructured data includes cross-lingual text [19] and domain-
+specific data (such as medical [67]and legal domains [29]).
+Semi-structured data. typically refers to data that contains a
+combination of text and table information, such as PDF. Han-
+dling semi-structured data poses challenges for conventional
+RAG systems due to two main reasons. Firstly, text splitting
+processes may inadvertently separate tables, leading to data
+corruption during retrieval. Secondly, incorporating tables into
+the data can complicate semantic similarity searches. When
+dealing with semi-structured data, one approach involves lever-
+aging the code capabilities of LLMs to execute Text-2-SQL
+queries on tables within databases, such as TableGPT [85].
+Alternatively, tables can be transformed into text format for
+further analysis using text-based methods [75]. However, both
+of these methods are not optimal solutions, indicating substan-
+tial research opportunities in this area.
+Structured data, such as knowledge graphs (KGs) [86] ,
+which are typically verified and can provide more precise in-
+formation. KnowledGPT [15] generates KB search queries and
+stores knowledge in a personalized base, enhancing the RAG
+model’s knowledge richness. In response to the limitations of
+LLMs in understanding and answering questions about textual
+graphs, G-Retriever [84] integrates Graph Neural Networks
+4https://hotpotqa.github.io/wiki-readme.html
+5https://github.com/facebookresearch/DPR
+(GNNs), LLMs and RAG, enhancing graph comprehension
+and question-answering capabilities through soft prompting
+of the LLM, and employs the Prize-Collecting Steiner Tree
+(PCST) optimization problem for targeted graph retrieval. On
+the contrary, it requires additional effort to build, validate,
+and maintain structured databases. On the contrary, it requires
+additional effort to build, validate, and maintain structured

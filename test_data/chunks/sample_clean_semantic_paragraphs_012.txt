@@ -1,0 +1,38 @@
+1) Mix/hybrid Retrieval : Sparse and dense embedding
+approaches capture different relevance features and can ben-
+efit from each other by leveraging complementary relevance
+information. For instance, sparse retrieval models can be used
+6https://github.com/aurelio-labs/semantic-router
+7https://huggingface.co/spaces/mteb/leaderboard
+to provide initial search results for training dense retrieval
+models. Additionally, pre-training language models (PLMs)
+can be utilized to learn term weights to enhance sparse
+retrieval. Specifically, it also demonstrates that sparse retrieval
+models can enhance the zero-shot retrieval capability of dense
+retrieval models and assist dense retrievers in handling queries
+containing rare entities, thereby improving robustness. 2) Fine-tuning Embedding Model: In instances where the
+context significantly deviates from pre-training corpus, partic-
+ularly within highly specialized disciplines such as healthcare,
+legal practice, and other sectors replete with proprietary jargon,
+fine-tuning the embedding model on your own domain dataset
+becomes essential to mitigate such discrepancies. In addition to supplementing domain knowledge, another
+purpose of fine-tuning is to align the retriever and generator,
+for example, using the results of LLM as the supervision signal
+for fine-tuning, known as LSR (LM-supervised Retriever). PROMPTAGATOR [21] utilizes the LLM as a few-shot query
+generator to create task-specific retrievers, addressing chal-
+lenges in supervised fine-tuning, particularly in data-scarce
+domains. Another approach, LLM-Embedder [97], exploits
+LLMs to generate reward signals across multiple downstream
+tasks. The retriever is fine-tuned with two types of supervised
+signals: hard labels for the dataset and soft rewards from
+the LLMs. This dual-signal approach fosters a more effective
+fine-tuning process, tailoring the embedding model to diverse
+downstream applications. REPLUG [72] utilizes a retriever
+and an LLM to calculate the probability distributions of the
+retrieved documents and then performs supervised training
+by computing the KL divergence. This straightforward and
+effective training method enhances the performance of the
+retrieval model by using an LM as the supervisory signal,
+eliminating the need for specific cross-attention mechanisms. Moreover, inspired by RLHF (Reinforcement Learning from
+Human Feedback), utilizing LM-based feedback to reinforce
+the retriever through reinforcement learning.

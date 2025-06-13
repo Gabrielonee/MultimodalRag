@@ -1,0 +1,75 @@
+The specific metrics for each evaluation aspect are sum-
+marized in Table III. It is essential to recognize that these
+metrics, derived from related work, are traditional measures
+and do not yet represent a mature or standardized approach for
+quantifying RAG evaluation aspects. Custom metrics tailored
+to the nuances of RAG models, though not included here, have
+also been developed in some evaluation studies.
+D. Evaluation Benchmarks and Tools
+A series of benchmark tests and tools have been proposed
+to facilitate the evaluation of RAG.These instruments furnish
+quantitative metrics that not only gauge RAG model perfor-
+mance but also enhance comprehension of the model’s capabil-
+ities across various evaluation aspects. Prominent benchmarks
+such as RGB, RECALL and CRUD
+[167]–[169] focus on
+appraising the essential abilities of RAG models. Concur-
+rently, state-of-the-art automated tools like RAGAS [164],
+ARES [165], and TruLens8 employ LLMs to adjudicate the
+quality scores. These tools and benchmarks collectively form
+a robust framework for the systematic evaluation of RAG
+models, as summarized in Table IV.
+VII. DISCUSSION AND FUTURE PROSPECTS
+Despite the considerable progress in RAG technology, sev-
+eral challenges persist that warrant in-depth research.This
+chapter will mainly introduce the current challenges and future
+research directions faced by RAG.
+A. RAG vs Long Context
+With the deepening of related research, the context of LLMs
+is continuously expanding [170]–[172]. Presently, LLMs can
+effortlessly manage contexts exceeding 200,000 tokens 9. This
+capability signifies that long-document question answering,
+previously reliant on RAG, can now incorporate the entire
+document directly into the prompt. This has also sparked
+discussions on whether RAG is still necessary when LLMs
+8https://www.trulens.org/trulens eval/core concepts rag triad/
+9https://kimi.moonshot.cn
+are not constrained by context. In fact, RAG still plays an
+irreplaceable role. On one hand, providing LLMs with a
+large amount of context at once will significantly impact its
+inference speed, while chunked retrieval and on-demand input
+can significantly improve operational efficiency. On the other
+hand, RAG-based generation can quickly locate the original
+references for LLMs to help users verify the generated an-
+swers. The entire retrieval and reasoning process is observable,
+while generation solely relying on long context remains a
+black box. Conversely, the expansion of context provides new
+opportunities for the development of RAG, enabling it to
+address more complex problems and integrative or summary
+questions that require reading a large amount of material to
+answer [49]. Developing new RAG methods in the context of
+super-long contexts is one of the future research trends.
+B. RAG Robustness
+The presence of noise or contradictory information during
+retrieval can detrimentally affect RAG’s output quality. This
+situation is figuratively referred to as “Misinformation can
+be worse than no information at all”. Improving RAG’s
+resistance to such adversarial or counterfactual inputs is gain-
+ing research momentum and has become a key performance
+metric [48], [50], [82]. Cuconasu et al. [54] analyze which
+type of documents should be retrieved, evaluate the relevance
+of the documents to the prompt, their position, and the
+number included in the context. The research findings reveal
+that including irrelevant documents can unexpectedly increase
+accuracy by over 30%, contradicting the initial assumption
+of reduced quality. These results underscore the importance
+of developing specialized strategies to integrate retrieval with
+language generation models, highlighting the need for further
+research and exploration into the robustness of RAG.
+C. Hybrid Approaches
+Combining RAG with fine-tuning is emerging as a leading
+strategy. Determining the optimal integration of RAG and
+fine-tuning whether sequential, alternating, or through end-to-
+end joint training—and how to harness both parameterized
+
+--- Page 15 ---

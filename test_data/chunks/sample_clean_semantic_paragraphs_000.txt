@@ -1,0 +1,53 @@
+--- Page 1 ---
+Retrieval-Augmented Generation for Large
+Language Models: A Survey
+Yunfan Gaoa, Yun Xiongb, Xinyu Gaob, Kangxiang Jiab, Jinliu Panb, Yuxi Bic, Yi Daia, Jiawei Suna, Meng
+Wangc, and Haofen Wang a,c
+aShanghai Research Institute for Intelligent Autonomous Systems, Tongji University
+bShanghai Key Laboratory of Data Science, School of Computer Science, Fudan University
+cCollege of Design and Innovation, Tongji University
+Abstract—Large Language Models (LLMs) showcase impres-
+sive capabilities but encounter challenges like hallucination,
+outdated knowledge, and non-transparent, untraceable reasoning
+processes. Retrieval-Augmented Generation (RAG) has emerged
+as a promising solution by incorporating knowledge from external
+databases. This enhances the accuracy and credibility of the
+generation, particularly for knowledge-intensive tasks, and allows
+for continuous knowledge updates and integration of domain-
+specific information. RAG synergistically merges LLMs’ intrin-
+sic knowledge with the vast, dynamic repositories of external
+databases. This comprehensive review paper offers a detailed
+examination of the progression of RAG paradigms, encompassing
+the Naive RAG, the Advanced RAG, and the Modular RAG.
+It meticulously scrutinizes the tripartite foundation of RAG
+frameworks, which includes the retrieval, the generation and the
+augmentation techniques. The paper highlights the state-of-the-
+art technologies embedded in each of these critical components,
+providing a profound understanding of the advancements in RAG
+systems. Furthermore, this paper introduces up-to-date evalua-
+tion framework and benchmark. At the end, this article delineates
+the challenges currently faced and points out prospective avenues
+for research and development 1.
+Index Terms—Large language model, retrieval-augmented gen-
+eration, natural language processing, information retrieval
+I. INTRODUCTION
+
+ARGE language models (LLMs) have achieved remark-
+able success, though they still face significant limitations,
+especially in domain-specific or knowledge-intensive tasks [1],
+notably producing “hallucinations” [2] when handling queries
+beyond their training data or requiring current information. To
+overcome challenges, Retrieval-Augmented Generation (RAG)
+enhances LLMs by retrieving relevant document chunks from
+external knowledge base through semantic similarity calcu-
+lation. By referencing external knowledge, RAG effectively
+reduces the problem of generating factually incorrect content.
+Its integration into LLMs has resulted in widespread adoption,
+establishing RAG as a key technology in advancing chatbots
+and enhancing the suitability of LLMs for real-world applica-
+
+RAG technology has rapidly developed in recent years, and
+the technology tree summarizing related research is shown
+Corresponding Author.Email:haofen.wang@tongji.edu.cn
+
+https://github.com/Tongji-KGLLM/

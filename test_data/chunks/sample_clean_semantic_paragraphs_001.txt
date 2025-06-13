@@ -1,0 +1,44 @@
+in Figure 1. The development trajectory of RAG in the era
+of large models exhibits several distinct stage characteristics.
+Initially, RAG’s inception coincided with the rise of the
+Transformer architecture, focusing on enhancing language
+models by incorporating additional knowledge through Pre-
+Training Models (PTM). This early stage was characterized
+by foundational work aimed at refining pre-training techniques
+[3]–[5].The subsequent arrival of ChatGPT [6] marked a
+pivotal moment, with LLM demonstrating powerful in context
+learning (ICL) capabilities. RAG research shifted towards
+providing better information for LLMs to answer more com-
+plex and knowledge-intensive tasks during the inference stage,
+leading to rapid development in RAG studies. As research
+progressed, the enhancement of RAG was no longer limited
+to the inference stage but began to incorporate more with LLM
+fine-tuning techniques.
+The burgeoning field of RAG has experienced swift growth,
+yet it has not been accompanied by a systematic synthesis that
+could clarify its broader trajectory. This survey endeavors to
+fill this gap by mapping out the RAG process and charting
+its evolution and anticipated future paths, with a focus on the
+integration of RAG within LLMs. This paper considers both
+technical paradigms and research methods, summarizing three
+main research paradigms from over 100 RAG studies, and
+analyzing key technologies in the core stages of “Retrieval,”
+“Generation,” and “Augmentation.” On the other hand, current
+research tends to focus more on methods, lacking analysis and
+summarization of how to evaluate RAG. This paper compre-
+hensively reviews the downstream tasks, datasets, benchmarks,
+and evaluation methods applicable to RAG. Overall, this
+paper sets out to meticulously compile and categorize the
+foundational technical concepts, historical progression, and
+the spectrum of RAG methodologies and applications that
+have emerged post-LLMs. It is designed to equip readers and
+professionals with a detailed and structured understanding of
+both large models and RAG. It aims to illuminate the evolution
+of retrieval augmentation techniques, assess the strengths and
+weaknesses of various approaches in their respective contexts,
+and speculate on upcoming trends and innovations.
+Our contributions are as follows:
+• In this survey, we present a thorough and systematic
+review of the state-of-the-art RAG methods, delineating
+its evolution through paradigms including naive RAG,
+arXiv:2312.10997v5  [cs.CL]  27 Mar 2024

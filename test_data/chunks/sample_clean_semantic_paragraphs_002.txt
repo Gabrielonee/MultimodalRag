@@ -1,0 +1,53 @@
+--- Page 2 ---
+Fig. 1. Technology tree of RAG research. The stages of involving RAG mainly include pre-training, fine-tuning, and inference. With the emergence of LLMs,
+research on RAG initially focused on leveraging the powerful in context learning abilities of LLMs, primarily concentrating on the inference stage. Subsequent
+research has delved deeper, gradually integrating more with the fine-tuning of LLMs. Researchers have also been exploring ways to enhance language models
+in the pre-training stage through retrieval-augmented techniques.
+advanced RAG, and modular RAG. This review contex-
+tualizes the broader scope of RAG research within the
+landscape of LLMs.
+• We identify and discuss the central technologies integral
+to the RAG process, specifically focusing on the aspects
+of “Retrieval”, “Generation” and “Augmentation”, and
+delve into their synergies, elucidating how these com-
+ponents intricately collaborate to form a cohesive and
+effective RAG framework.
+• We have summarized the current assessment methods of
+RAG, covering 26 tasks, nearly 50 datasets, outlining
+the evaluation objectives and metrics, as well as the
+current evaluation benchmarks and tools. Additionally,
+we anticipate future directions for RAG, emphasizing
+potential enhancements to tackle current challenges.
+The paper unfolds as follows: Section II introduces the
+main concept and current paradigms of RAG. The following
+three sections explore core components—“Retrieval”, “Gen-
+eration” and “Augmentation”, respectively. Section III focuses
+on optimization methods in retrieval,including indexing, query
+and embedding optimization. Section IV concentrates on post-
+retrieval process and LLM fine-tuning in generation. Section V
+analyzes the three augmentation processes. Section VI focuses
+on RAG’s downstream tasks and evaluation system. Sec-
+tion VII mainly discusses the challenges that RAG currently
+faces and its future development directions. At last, the paper
+concludes in Section VIII.
+II. OVERVIEW OF RAG
+A typical application of RAG is illustrated in Figure 2.
+Here, a user poses a question to ChatGPT about a recent,
+widely discussed news. Given ChatGPT’s reliance on pre-
+training data, it initially lacks the capacity to provide up-
+dates on recent developments. RAG bridges this information
+gap by sourcing and incorporating knowledge from external
+databases. In this case, it gathers relevant news articles related
+to the user’s query. These articles, combined with the original
+question, form a comprehensive prompt that empowers LLMs
+to generate a well-informed answer.
+The RAG research paradigm is continuously evolving, and
+we categorize it into three stages: Naive RAG, Advanced
+RAG, and Modular RAG, as showed in Figure 3. Despite
+RAG method are cost-effective and surpass the performance
+of the native LLM, they also exhibit several limitations.
+The development of Advanced RAG and Modular RAG is
+a response to these specific shortcomings in Naive RAG.
+A. Naive RAG
+The Naive RAG research paradigm represents the earli-
+est methodology, which gained prominence shortly after the

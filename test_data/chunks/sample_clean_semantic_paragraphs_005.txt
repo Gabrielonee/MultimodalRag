@@ -1,0 +1,70 @@
+--- Page 5 ---
+aligns the text more closely with data distribution through iter-
+ative self-enhancement [17], [18]. Routing in the RAG system
+navigates through diverse data sources, selecting the optimal
+pathway for a query, whether it involves summarization,
+specific database searches, or merging different information
+streams [19]. The Predict module aims to reduce redundancy
+and noise by generating context directly through the LLM,
+ensuring relevance and accuracy [13]. Lastly, the Task Adapter
+module tailors RAG to various downstream tasks, automating
+prompt retrieval for zero-shot inputs and creating task-specific
+retrievers through few-shot query generation [20], [21] .This
+comprehensive approach not only streamlines the retrieval pro-
+cess but also significantly improves the quality and relevance
+of the information retrieved, catering to a wide array of tasks
+and queries with enhanced precision and flexibility.
+2) New Patterns: Modular RAG offers remarkable adapt-
+ability by allowing module substitution or reconfiguration
+to address specific challenges. This goes beyond the fixed
+structures of Naive and Advanced RAG, characterized by a
+simple “Retrieve” and “Read” mechanism. Moreover, Modular
+RAG expands this flexibility by integrating new modules or
+adjusting interaction flow among existing ones, enhancing its
+applicability across different tasks.
+Innovations such as the Rewrite-Retrieve-Read [7]model
+leverage the LLM’s capabilities to refine retrieval queries
+through a rewriting module and a LM-feedback mechanism
+to update rewriting model., improving task performance.
+Similarly, approaches like Generate-Read [13] replace tradi-
+tional retrieval with LLM-generated content, while Recite-
+Read [22] emphasizes retrieval from model weights, enhanc-
+ing the model’s ability to handle knowledge-intensive tasks.
+Hybrid retrieval strategies integrate keyword, semantic, and
+vector searches to cater to diverse queries. Additionally, em-
+ploying sub-queries and hypothetical document embeddings
+(HyDE) [11] seeks to improve retrieval relevance by focusing
+on embedding similarities between generated answers and real
+
+Adjustments in module arrangement and interaction, such
+as the Demonstrate-Search-Predict (DSP) [23] framework
+and the iterative Retrieve-Read-Retrieve-Read flow of ITER-
+RETGEN [14], showcase the dynamic use of module out-
+puts to bolster another module’s functionality, illustrating a
+sophisticated understanding of enhancing module synergy.
+The flexible orchestration of Modular RAG Flow showcases
+the benefits of adaptive retrieval through techniques such as
+FLARE [24] and Self-RAG [25]. This approach transcends
+the fixed RAG retrieval process by evaluating the necessity
+of retrieval based on different scenarios. Another benefit of
+a flexible architecture is that the RAG system can more
+easily integrate with other technologies (such as fine-tuning
+or reinforcement learning) [26]. For example, this can involve
+fine-tuning the retriever for better retrieval results, fine-tuning
+the generator for more personalized outputs, or engaging in
+collaborative fine-tuning [27].
+D. RAG vs Fine-tuning
+The augmentation of LLMs has attracted considerable atten-
+tion due to their growing prevalence. Among the optimization
+methods for LLMs, RAG is often compared with Fine-tuning
+(FT) and prompt engineering. Each method has distinct charac-
+teristics as illustrated in Figure 4. We used a quadrant chart to
+illustrate the differences among three methods in two dimen-
+sions: external knowledge requirements and model adaption
+requirements. Prompt engineering leverages a model’s inherent
+capabilities with minimum necessity for external knowledge
+and model adaption. RAG can be likened to providing a model
+with a tailored textbook for information retrieval, ideal for pre-
+cise information retrieval tasks. In contrast, FT is comparable
+to a student internalizing knowledge over time, suitable for
+scenarios requiring replication of specific structures, styles, or

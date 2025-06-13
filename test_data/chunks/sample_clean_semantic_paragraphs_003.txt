@@ -1,0 +1,67 @@
+--- Page 3 ---
+Fig. 2. A representative instance of the RAG process applied to question answering. It mainly consists of 3 steps. 1) Indexing. Documents are split into chunks,
+encoded into vectors, and stored in a vector database. 2) Retrieval. Retrieve the Top k chunks most relevant to the question based on semantic similarity. 3)
+Generation. Input the original question and the retrieved chunks together into LLM to generate the final answer.
+widespread adoption of ChatGPT. The Naive RAG follows
+a traditional process that includes indexing, retrieval, and
+generation, which is also characterized as a “Retrieve-Read”
+framework [7].
+Indexing starts with the cleaning and extraction of raw data
+in diverse formats like PDF, HTML, Word, and Markdown,
+which is then converted into a uniform plain text format. To
+accommodate the context limitations of language models, text
+is segmented into smaller, digestible chunks. Chunks are then
+encoded into vector representations using an embedding model
+and stored in vector database. This step is crucial for enabling
+efficient similarity searches in the subsequent retrieval phase.
+Retrieval. Upon receipt of a user query, the RAG system
+employs the same encoding model utilized during the indexing
+phase to transform the query into a vector representation.
+It then computes the similarity scores between the query
+vector and the vector of chunks within the indexed corpus.
+The system prioritizes and retrieves the top K chunks that
+demonstrate the greatest similarity to the query. These chunks
+are subsequently used as the expanded context in prompt.
+Generation. The posed query and selected documents are
+synthesized into a coherent prompt to which a large language
+model is tasked with formulating a response. The model’s
+approach to answering may vary depending on task-specific
+criteria, allowing it to either draw upon its inherent parametric
+knowledge or restrict its responses to the information con-
+tained within the provided documents. In cases of ongoing
+dialogues, any existing conversational history can be integrated
+into the prompt, enabling the model to engage in multi-turn
+dialogue interactions effectively.
+However, Naive RAG encounters notable drawbacks:
+Retrieval Challenges. The retrieval phase often struggles
+with precision and recall, leading to the selection of misaligned
+or irrelevant chunks, and the missing of crucial information.
+Generation Difficulties. In generating responses, the model
+may face the issue of hallucination, where it produces con-
+tent not supported by the retrieved context. This phase can
+also suffer from irrelevance, toxicity, or bias in the outputs,
+detracting from the quality and reliability of the responses.
+Augmentation Hurdles. Integrating retrieved information
+with the different task can be challenging, sometimes resulting
+in disjointed or incoherent outputs. The process may also
+encounter redundancy when similar information is retrieved
+from multiple sources, leading to repetitive responses. Deter-
+mining the significance and relevance of various passages and
+ensuring stylistic and tonal consistency add further complexity.
+Facing complex issues, a single retrieval based on the original
+query may not suffice to acquire adequate context information.
+Moreover, there’s a concern that generation models might
+overly rely on augmented information, leading to outputs that
+simply echo retrieved content without adding insightful or
+synthesized information.
+B. Advanced RAG
+Advanced RAG introduces specific improvements to over-
+come the limitations of Naive RAG. Focusing on enhancing re-
+trieval quality, it employs pre-retrieval and post-retrieval strate-
+gies. To tackle the indexing issues, Advanced RAG refines
+its indexing techniques through the use of a sliding window
+approach, fine-grained segmentation, and the incorporation of
+metadata. Additionally, it incorporates several optimization
+methods to streamline the retrieval process [8].
+
+--- Page 4 ---

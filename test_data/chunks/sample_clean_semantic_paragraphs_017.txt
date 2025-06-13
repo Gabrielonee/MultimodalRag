@@ -1,0 +1,23 @@
+In contrast, multi-hop
+retrieval is designed to delve deeper into graph-structured data
+sources, extracting interconnected information [106]. C. Adaptive Retrieval
+Adaptive retrieval methods, exemplified by Flare [24] and
+Self-RAG [25], refine the RAG framework by enabling LLMs
+to actively determine the optimal moments and content for
+retrieval, thus enhancing the efficiency and relevance of the
+information sourced. These methods are part of a broader trend wherein
+LLMs employ active judgment in their operations, as seen
+in model agents like AutoGPT, Toolformer, and Graph-
+Toolformer [107]–[109]. Graph-Toolformer, for instance, di-
+vides its retrieval process into distinct steps where LLMs
+proactively use retrievers, apply Self-Ask techniques, and em-
+ploy few-shot prompts to initiate search queries. This proactive
+stance allows LLMs to decide when to search for necessary
+information, akin to how an agent utilizes tools. WebGPT [110] integrates a reinforcement learning frame-
+work to train the GPT-3 model in autonomously using a
+search engine during text generation. It navigates this process
+using special tokens that facilitate actions such as search
+engine queries, browsing results, and citing references, thereby
+expanding GPT-3’s capabilities through the use of external
+search engines. Flare automates timing retrieval by monitoring
+the confidence of the generation process, as indicated by the

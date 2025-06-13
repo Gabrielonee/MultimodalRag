@@ -1,0 +1,39 @@
+--- Page 11 ---
+Fig. 5. In addition to the most common once retrieval, RAG also includes three types of retrieval augmentation processes. (left) Iterative retrieval involves
+alternating between retrieval and generation, allowing for richer and more targeted context from the knowledge base at each step. (Middle) Recursive retrieval
+involves gradually refining the user query and breaking down the problem into sub-problems, then continuously solving complex problems through retrieval
+and generation. (Right) Adaptive retrieval focuses on enabling the RAG system to autonomously determine whether external knowledge retrieval is necessary
+and when to stop retrieval and generation, often utilizing LLM-generated special tokens for control. base for LLMs. This approach has been shown to enhance
+the robustness of subsequent answer generation by offering
+additional contextual references through multiple retrieval
+iterations. However, it may be affected by semantic discon-
+tinuity and the accumulation of irrelevant information. ITER-
+RETGEN [14] employs a synergistic approach that lever-
+ages “retrieval-enhanced generation” alongside “generation-
+enhanced retrieval” for tasks that necessitate the reproduction
+of specific information. The model harnesses the content
+required to address the input task as a contextual basis for
+retrieving pertinent knowledge, which in turn facilitates the
+generation of improved responses in subsequent iterations. B. Recursive Retrieval
+Recursive retrieval is often used in information retrieval and
+NLP to improve the depth and relevance of search results. The process involves iteratively refining search queries based
+on the results obtained from previous searches. Recursive
+Retrieval aims to enhance the search experience by gradu-
+ally converging on the most pertinent information through a
+feedback loop. IRCoT [61] uses chain-of-thought to guide
+the retrieval process and refines the CoT with the obtained
+retrieval results. ToC [57] creates a clarification tree that
+systematically optimizes the ambiguous parts in the Query. It
+can be particularly useful in complex search scenarios where
+the user’s needs are not entirely clear from the outset or where
+the information sought is highly specialized or nuanced. The
+recursive nature of the process allows for continuous learning
+and adaptation to the user’s requirements, often resulting in
+improved satisfaction with the search outcomes. To address specific data scenarios, recursive retrieval and
+multi-hop retrieval techniques are utilized together. Recursive
+retrieval involves a structured index to process and retrieve
+data in a hierarchical manner, which may include summarizing
+sections of a document or lengthy PDF before performing a
+retrieval based on this summary. Subsequently, a secondary
+retrieval within the document refines the search, embodying
+the recursive nature of the process.

@@ -1,0 +1,39 @@
+Fine-tuning models may present challenges, such as in-
+tegrating functionality through an API or addressing con-
+straints arising from limited local computational resources.
+Consequently, some approaches opt to incorporate an external
+adapter to aid in alignment.
+To optimize the multi-task capabilities of LLM, UP-
+RISE [20] trained a lightweight prompt retriever that can
+automatically retrieve prompts from a pre-built prompt pool
+that are suitable for a given zero-shot task input. AAR
+(Augmentation-Adapted Retriver) [47] introduces a universal
+adapter designed to accommodate multiple downstream tasks.
+While PRCA [69] add a pluggable reward-driven contextual
+adapter to enhance performance on specific tasks. BGM [26]
+keeps the retriever and LLM fixed,and trains a bridge Seq2Seq
+model in between. The bridge model aims to transform the
+retrieved information into a format that LLMs can work with
+effectively, allowing it to not only rerank but also dynami-
+cally select passages for each query, and potentially employ
+more advanced strategies like repetition. Furthermore, PKG
+
+--- Page 10 ---
+introduces an innovative method for integrating knowledge
+into white-box models via directive fine-tuning [75]. In this
+approach, the retriever module is directly substituted to gen-
+erate relevant documents according to a query. This method
+assists in addressing the difficulties encountered during the
+fine-tuning process and enhances model performance.
+IV. GENERATION
+After retrieval, it is not a good practice to directly input all
+the retrieved information to the LLM for answering questions.
+Following will introduce adjustments from two perspectives:
+adjusting the retrieved content and adjusting the LLM.
+A. Context Curation
+Redundant information can interfere with the final gener-
+ation of LLM, and overly long contexts can also lead LLM
+to the “Lost in the middle” problem [98]. Like humans, LLM
+tends to only focus on the beginning and end of long texts,
+while forgetting the middle portion. Therefore, in the RAG
+system, we typically need to further process the retrieved
