@@ -1,0 +1,22 @@
+Answer Faithfulness ensures that the generated answers
+remain true to the retrieved context, maintaining consistency
+and avoiding contradictions. Answer Relevance requires that the generated answers are
+directly pertinent to the posed questions, effectively addressing
+the core inquiry. 2) Required Abilities: RAG evaluation also encompasses
+four abilities indicative of its adaptability and efficiency:
+noise robustness, negative rejection, information integration,
+and counterfactual robustness [167], [168]. These abilities are
+critical for the model’s performance under various challenges
+and complex scenarios, impacting the quality scores. Noise Robustness appraises the model’s capability to man-
+age noise documents that are question-related but lack sub-
+stantive information. Negative Rejection assesses the model’s discernment in
+refraining from responding when the retrieved documents do
+not contain the necessary knowledge to answer a question. Information Integration evaluates the model’s proficiency in
+synthesizing information from multiple documents to address
+complex questions. Counterfactual Robustness tests the model’s ability to rec-
+ognize and disregard known inaccuracies within documents,
+even when instructed about potential misinformation. Context relevance and noise robustness are important for
+evaluating the quality of retrieval, while answer faithfulness,
+answer relevance, negative rejection, information integration,
+and counterfactual robustness are important for evaluating the
+quality of generation.

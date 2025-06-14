@@ -1,0 +1,10 @@
+{
+  "16df9323f053c7755ecefb25c2b7a771": {
+    "pdf_path": "rag_workspace_qdrant/uploads/rag.pdf",
+    "pdf_hash": "16df9323f053c7755ecefb25c2b7a771",
+    "processed_at": "1749899349.179772",
+    "chunk_count": 26,
+    "file_size": 1662567,
+    "status": "processed"
+  }
+}

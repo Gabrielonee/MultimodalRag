@@ -1,0 +1,68 @@
+--- Page 16 ---
+Fig. 6. Summary of RAG ecosystem
+initial learning curve. 3) Specialization - optimizing RAG to
+better serve production environments.
+The mutual growth of RAG models and their technology
+stacks is evident; technological advancements continuously
+establish new standards for existing infrastructure. In turn,
+enhancements to the technology stack drive the development
+of RAG capabilities. RAG toolkits are converging into a
+foundational technology stack, laying the groundwork for
+advanced enterprise applications. However, a fully integrated,
+comprehensive platform concept is still in the future, requiring
+further innovation and development.
+F. Multi-modal RAG
+
+transcended
+
+answering confines, embracing a diverse array of modal data.
+This expansion has spawned innovative multimodal models
+that integrate RAG concepts across various domains:
+Image. RA-CM3 [176] stands as a pioneering multimodal
+model of both retrieving and generating text and images.
+BLIP-2 [177] leverages frozen image encoders alongside
+LLMs for efficient visual language pre-training, enabling zero-
+shot image-to-text conversions. The “Visualize Before You
+Write” method [178] employs image generation to steer the
+LM’s text generation, showing promise in open-ended text
+generation tasks.
+Audio and Video. The GSS method retrieves and stitches
+together audio clips to convert machine-translated data into
+speech-translated data [179]. UEOP marks a significant ad-
+vancement in end-to-end automatic speech recognition by
+incorporating external, offline strategies for voice-to-text con-
+version [180]. Additionally, KNN-based attention fusion lever-
+ages audio embeddings and semantically related text embed-
+dings to refine ASR, thereby accelerating domain adaptation.
+Vid2Seq augments language models with specialized temporal
+markers, facilitating the prediction of event boundaries and
+textual descriptions within a unified output sequence [181].
+Code. RBPS [182] excels in small-scale learning tasks by
+retrieving code examples that align with developers’ objectives
+through encoding and frequency analysis. This approach has
+demonstrated efficacy in tasks such as test assertion genera-
+tion and program repair. For structured knowledge, the CoK
+method [106] first extracts facts pertinent to the input query
+from a knowledge graph, then integrates these facts as hints
+within the input, enhancing performance in knowledge graph
+question-answering tasks.
+VIII. CONCLUSION
+The summary of this paper, as depicted in Figure 6, empha-
+sizes RAG’s significant advancement in enhancing the capa-
+bilities of LLMs by integrating parameterized knowledge from
+language models with extensive non-parameterized data from
+external knowledge bases. The survey showcases the evolution
+of RAG technologies and their application on many different
+tasks. The analysis outlines three developmental paradigms
+within the RAG framework: Naive, Advanced, and Modu-
+lar RAG, each representing a progressive enhancement over
+its predecessors. RAG’s technical integration with other AI
+methodologies, such as fine-tuning and reinforcement learning,
+has further expanded its capabilities. Despite the progress in
+RAG technology, there are research opportunities to improve
+its robustness and its ability to handle extended contexts.
+RAG’s application scope is expanding into multimodal do-
+mains, adapting its principles to interpret and process diverse
+data forms like images, videos, and code. This expansion high-
+lights RAG’s significant practical implications for AI deploy-
+ment, attracting interest from academic and industrial sectors.

@@ -1,0 +1,45 @@
+1) Chunking Strategy: The most common method is to split
+the document into chunks on a fixed number of tokens (e.g.,
+100, 256, 512) [88]. Larger chunks can capture more context,
+but they also generate more noise, requiring longer processing
+time and higher costs. While smaller chunks may not fully
+convey the necessary context, they do have less noise. How-
+ever, chunks leads to truncation within sentences, prompting
+the optimization of a recursive splits and sliding window meth-
+ods, enabling layered retrieval by merging globally related
+information across multiple retrieval processes [89]. Never-
+theless, these approaches still cannot strike a balance between
+semantic completeness and context length. Therefore, methods
+like Small2Big have been proposed, where sentences (small)
+are used as the retrieval unit, and the preceding and following
+sentences are provided as (big) context to LLMs [90]. 2) Metadata Attachments: Chunks can be enriched with
+metadata information such as page number, file name, au-
+thor,category timestamp. Subsequently, retrieval can be filtered
+based on this metadata, limiting the scope of the retrieval. Assigning different weights to document timestamps during
+retrieval can achieve time-aware RAG, ensuring the freshness
+of knowledge and avoiding outdated information. In addition to extracting metadata from the original doc-
+uments, metadata can also be artificially constructed. For
+example, adding summaries of paragraph, as well as intro-
+ducing hypothetical questions. This method is also known as
+Reverse HyDE. Specifically, using LLM to generate questions
+that can be answered by the document, then calculating the
+similarity between the original question and the hypothetical
+question during retrieval to reduce the semantic gap between
+the question and the answer. 3) Structural Index: One effective method for enhancing
+information retrieval is to establish a hierarchical structure for
+the documents. By constructing In structure, RAG system can
+expedite the retrieval and processing of pertinent data. Hierarchical index structure. File are arranged in parent-
+child relationships, with chunks linked to them. Data sum-
+maries are stored at each node, aiding in the swift traversal
+of data and assisting the RAG system in determining which
+chunks to extract. This approach can also mitigate the illusion
+caused by block extraction issues. Knowledge Graph index. Utilize KG in constructing the
+hierarchical structure of documents contributes to maintaining
+consistency. It delineates the connections between different
+concepts and entities, markedly reducing the potential for
+illusions. Another advantage is the transformation of the
+information retrieval process into instructions that LLM can
+comprehend, thereby enhancing the accuracy of knowledge
+retrieval and enabling LLM to generate contextually coherent
+responses, thus improving the overall efficiency of the RAG
+system.

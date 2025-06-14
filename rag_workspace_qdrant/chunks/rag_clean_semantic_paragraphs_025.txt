@@ -1,0 +1,8 @@
+--- Page 17 ---
+The growing ecosystem of RAG is evidenced by the rise in
+RAG-centric AI applications and the continuous development
+of supportive tools. As RAG’s application landscape broadens,
+there is a need to refine evaluation methodologies to keep
+pace with its evolution. Ensuring accurate and representative
+performance assessments is crucial for fully capturing RAG’s
+contributions to the AI research and development community.

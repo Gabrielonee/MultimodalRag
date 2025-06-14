@@ -1,0 +1,55 @@
+Comparison between the three paradigms of RAG. (Left) Naive RAG mainly consists of three parts: indexing, retrieval and generation. (Middle)
+Advanced RAG proposes multiple optimization strategies around pre-retrieval and post-retrieval, with a process similar to the Naive RAG, still following a
+chain-like structure. (Right) Modular RAG inherits and develops from the previous paradigm, showcasing greater flexibility overall. This is evident in the
+introduction of multiple specific functional modules and the replacement of existing modules. The overall process is not limited to sequential retrieval and
+generation; it includes methods such as iterative and adaptive retrieval.
+Pre-retrieval process. In this stage, the primary focus is
+on optimizing the indexing structure and the original query.
+The goal of optimizing indexing is to enhance the quality of
+the content being indexed. This involves strategies: enhancing
+data granularity, optimizing index structures, adding metadata,
+alignment optimization, and mixed retrieval. While the goal
+of query optimization is to make the user’s original question
+clearer and more suitable for the retrieval task. Common
+methods include query rewriting query transformation, query
+expansion and other techniques [7], [9]–[11].
+Post-Retrieval Process. Once relevant context is retrieved,
+it’s crucial to integrate it effectively with the query. The main
+methods in post-retrieval process include rerank chunks and
+context compressing. Re-ranking the retrieved information to
+relocate the most relevant content to the edges of the prompt is
+a key strategy. This concept has been implemented in frame-
+works such as LlamaIndex2, LangChain3, and HayStack [12].
+Feeding all relevant documents directly into LLMs can lead
+to information overload, diluting the focus on key details with
+irrelevant content.To mitigate this, post-retrieval efforts con-
+centrate on selecting the essential information, emphasizing
+critical sections, and shortening the context to be processed.
+2https://www.llamaindex.ai
+3https://www.langchain.com/
+C. Modular RAG
+The modular RAG architecture advances beyond the for-
+mer two RAG paradigms, offering enhanced adaptability and
+versatility. It incorporates diverse strategies for improving its
+components, such as adding a search module for similarity
+searches and refining the retriever through fine-tuning. Inno-
+vations like restructured RAG modules [13] and rearranged
+RAG pipelines [14] have been introduced to tackle specific
+challenges. The shift towards a modular RAG approach is
+becoming prevalent, supporting both sequential processing and
+integrated end-to-end training across its components. Despite
+its distinctiveness, Modular RAG builds upon the foundational
+principles of Advanced and Naive RAG, illustrating a progres-
+sion and refinement within the RAG family.
+1) New Modules: The Modular RAG framework introduces
+additional specialized components to enhance retrieval and
+processing capabilities. The Search module adapts to spe-
+cific scenarios, enabling direct searches across various data
+sources like search engines, databases, and knowledge graphs,
+using LLM-generated code and query languages [15]. RAG-
+Fusion addresses traditional search limitations by employing
+a multi-query strategy that expands user queries into diverse
+perspectives, utilizing parallel vector searches and intelligent
+re-ranking to uncover both explicit and transformative knowl-
+edge [16]. The Memory module leverages the LLM’s memory
+to guide retrieval, creating an unbounded memory pool that

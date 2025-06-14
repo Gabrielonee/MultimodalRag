@@ -1,0 +1,44 @@
+--- Page 9 ---
+2) Query Transformation: The core concept is to retrieve
+chunks based on a transformed query instead of the user’s
+original query. Query Rewrite.The original queries are not always optimal
+for LLM retrieval, especially in real-world scenarios. There-
+fore, we can prompt LLM to rewrite the queries. In addition to
+using LLM for query rewriting, specialized smaller language
+models, such as RRR (Rewrite-retrieve-read) [7]. The imple-
+mentation of the query rewrite method in the Taobao, known
+as BEQUE [9] has notably enhanced recall effectiveness for
+long-tail queries, resulting in a rise in GMV. Another query transformation method is to use prompt
+engineering to let LLM generate a query based on the original
+query for subsequent retrieval. HyDE [11] construct hypothet-
+ical documents (assumed answers to the original query). It
+focuses on embedding similarity from answer to answer rather
+than seeking embedding similarity for the problem or query. Using the Step-back Prompting method [10], the original
+query is abstracted to generate a high-level concept question
+(step-back question). In the RAG system, both the step-back
+question and the original query are used for retrieval, and both
+the results are utilized as the basis for language model answer
+generation. 3) Query Routing: Based on varying queries, routing to
+distinct RAG pipeline,which is suitable for a versatile RAG
+system designed to accommodate diverse scenarios. Metadata Router/ Filter. The first step involves extracting
+keywords (entity) from the query, followed by filtering based
+on the keywords and metadata within the chunks to narrow
+down the search scope. Semantic Router is another method of routing involves
+leveraging the semantic information of the query. Specific
+apprach see Semantic Router 6. Certainly, a hybrid routing
+approach can also be employed, combining both semantic and
+metadata-based methods for enhanced query routing. D. Embedding
+In RAG, retrieval is achieved by calculating the similarity
+(e.g. cosine similarity) between the embeddings of the ques-
+tion and document chunks, where the semantic representation
+capability of embedding models plays a key role. This mainly
+includes a sparse encoder (BM25) and a dense retriever (BERT
+architecture Pre-training language models). Recent research
+has introduced prominent embedding models such as AngIE,
+Voyage, BGE,etc [94]–[96], which are benefit from multi-task
+instruct tuning. Hugging Face’s MTEB leaderboard 7 evaluates
+embedding models across 8 tasks, covering 58 datasests. Ad-
+ditionally, C-MTEB focuses on Chinese capability, covering
+6 tasks and 35 datasets. There is no one-size-fits-all answer
+to “which embedding model to use.” However, some specific
+models are better suited for particular use cases.

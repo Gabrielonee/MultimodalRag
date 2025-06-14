@@ -1,0 +1,34 @@
+To capture the logical relationship between document
+content and structure, KGP [91] proposed a method of building
+an index between multiple documents using KG. This KG
+consists of nodes (representing paragraphs or structures in the
+documents, such as pages and tables) and edges (indicating
+semantic/lexical similarity between paragraphs or relationships
+within the document structure), effectively addressing knowl-
+edge retrieval and reasoning problems in a multi-document
+environment. C. Query Optimization
+One of the primary challenges with Naive RAG is its
+direct reliance on the user’s original query as the basis for
+retrieval. Formulating a precise and clear question is difficult,
+and imprudent queries result in subpar retrieval effectiveness. Sometimes, the question itself is complex, and the language
+is not well-organized. Another difficulty lies in language
+complexity ambiguity. Language models often struggle when
+dealing with specialized vocabulary or ambiguous abbrevi-
+ations with multiple meanings. For instance, they may not
+discern whether “LLM” refers to large language model or a
+Master of Laws in a legal context. 1) Query Expansion: Expanding a single query into mul-
+tiple queries enriches the content of the query, providing
+further context to address any lack of specific nuances, thereby
+ensuring the optimal relevance of the generated answers. Multi-Query. By employing prompt engineering to expand
+queries via LLMs, these queries can then be executed in
+parallel. The expansion of queries is not random, but rather
+meticulously designed. Sub-Query. The process of sub-question planning represents
+the generation of the necessary sub-questions to contextualize
+and fully answer the original question when combined. This
+process of adding relevant context is, in principle, similar
+to query expansion. Specifically, a complex question can be
+decomposed into a series of simpler sub-questions using the
+least-to-most prompting method [92]. Chain-of-Verification(CoVe). The expanded queries undergo
+validation by LLM to achieve the effect of reducing halluci-
+nations. Validated expanded queries typically exhibit higher
+reliability [93].
