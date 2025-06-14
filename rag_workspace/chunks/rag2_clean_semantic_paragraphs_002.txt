@@ -1,0 +1,44 @@
+Figure 2: We discover that segmenting and indexing a retrieval corpus on the proposition level can be a simple yet
+effective strategy to increase dense retrievers’ generalization performance at inference time (A, B). We empirically
+compare the retrieval and downstream open-domain QA task performance when dense retrievers work with
+Wikipedia indexed at the level of 100-word passages, sentences, or propositions (C, D). can replace passages in downstream QA tasks. Based on our empirical experiments, we discover
+that selecting the proper retrieval granularity at in-
+ference time can be a simple yet effective strategy
+for improving dense retrievers’ retrieval and down-
+stream QA performance. We illustrate our intuition
+with an example of open-domain QA in Table 1. The example shows retrieved text by the same re-
+triever at three different granularities. The pas-
+sage, which represents a coarser retrieval unit with
+a longer context, is theoretically able to provide
+more relevant information for the question. How-
+ever, a passage often includes extraneous details
+(e.g., restoration period and horizontal displace-
+ment in the example of Table 1) that could poten-
+tially distract both the retriever and the language
+model in downstream tasks (Shi et al., 2023; Yu
+et al., 2023b). On the other hand, sentence-level in-
+dexing provides a finer-grained approach but does
+not entirely address the issue (Akkalyoncu Yilmaz
+et al., 2019; Yang et al., 2020). This is because
+sentences can still be complex and compounded,
+and they are often not self-contained, lacking nec-
+essary contextual information (e.g., in the example
+of Table 1, “the tower” is the coreference of “Pisa
+Tower”) for judging the query-document relevance. To address these shortcomings of typical re-
+trieval units such as passages or sentences, we pro-
+pose using proposition as a novel retrieval unit for
+dense retrieval. Propositions are defined as atomic
+expressions within text, where each encapsulates
+a distinct factoid and is presented in a concise,
+self-contained natural language format. We show
+an example proposition in Table 1. The proposi-
+tion describes the information regarding the Tower
+of Pisa’s current leaning angle in a self-contained
+way and precisely responds to what the question
+is querying. We provide a more detailed definition
+and description of proposition in §2. To validate
+the efficacy of using proposition as a retrieval unit
+for dense retrievers inference, we first process and
+index an English Wikipedia dump with all docu-
+ments segmented into propositions, which we refer
+to as FACTOIDWIKI.

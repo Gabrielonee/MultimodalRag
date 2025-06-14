@@ -1,0 +1,46 @@
+This second and third steps result in a vertex always being found, if the vertex is 
+connected to a vertex that has been visited (in fact, a vertex is found more than once if the 
+vertex is connected to some vertices that have been visited). But not all vertex needs to be 
+visited. In the optimization process, if a vertex does not have a minimum weight, then the 
+vertex does not need to be visited. Next, we repeat the second and third steps, so that all vertices 
+have been visited and the courier returns to the initial vertex (vertex 1). The following figure 
+and table show the second and third steps in the first loop on Dijkstra algorithm.
+
+Figure 3 Graph G in The First Loop of Dijkstra Algorithm
+
+Vertex 1 has been determined as the starting point, so in Figure 3, vertex 1 is 
+coloured blue to indicate it has been found and visited. The first row in Table 2 shows the 
+route from vertex 1 to vertex 1 yields zero weight. In the second step, vertices 2, 3, 4, 5, 8,
+
+--- Page 5 ---
+DIJKSTRA ALGORITHM IN DETERMINING THE SHORTEST ROUTE FOR DELIVERY SERVICE BY J&T 
+EXPRESS IN BANDUNG 
+Anie Lusiani, Siti Samsiyah Purwaningsih, Euis Sartika 
+Vol. 4, No. 2, Agustus 2023 hal. 940-948 
+DOI Artikel: 10.46306/lb.v4i2.337 
+9, 12, and 13 are adjacent to vertex 1. Then, these vertices are coloured by red (see Figure 3 on 
+the left). Since {1, 9} is the edge with minimum weight of 60 meters, the next vertex to visit is 
+vertex 9. So, vertex 9 is coloured by blue (see Figure 3 on the right). This is also shown in the 
+ninth row of Table 2.
+
+Table 2 The Vertices Conditions in The First Loop of Algorithm Dijkstra
+
+not yet found
+
+not yet found
+
+not yet found
+
+not yet found
+
+The next step is to loop sequentially from second step to third step until the all of 
+vertex has been visited and the courier returns again to vertex 1 as the starting point. The 
+following figure shows the second and third steps in the fourth loop on Dijkstra algorithm.
+
+Figure 4 Graph G in The Fourth Loop of Dijkstra Algorithm
+
+Figure 4 on the left shows vertices 9, 10, and 11 have been found and visited, so 
+these vertices are coloured by blue. While, vertex 12 has been found and coloured by red. 
+Then, Figure 4 on the right shows vertex 12 has been visited, since vertex 12 is the only 
+vertex found by vertex 11, so vertex 12 is coloured by blue.  
+Table 3 The Vertices Conditions in The Fourth Loop of Dijkstra Algorithm

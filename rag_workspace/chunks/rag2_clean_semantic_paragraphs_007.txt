@@ -1,0 +1,95 @@
+Open-domain QA Evaluation on
+Retrieval-Augmented Language Models
+Another aspect of the choice of granularity lies
+in what units should be used in the prompt for
+retrieval-augmented language models. For large
+language models, retrieval-augmented generation
+is achieved by prepending retrieved units to user in-
+struction and taking them as the input for language
+models. We aim to understand the implications of
+using retrieved units of different granularity within
+the same computational budget at inference time.
+To fairly compare using different granularity in the
+--- Page 5 ---
+
+Granularity
+
+Unsupervised Dense Retrievers
+
+Proposition
+
+Proposition
+
+Supervised Dense Retrievers
+
+Proposition
+
+Proposition
+
+Table 3: Passage retrieval performance (Recall@k = 5, 20) on five different open-domain QA datasets when
+pre-trained dense retrievers work with the three different granularity from the retrieval corpus. Underline denotes
+cases where the training split of the target dataset was included in the training data of the dense retriever.
+prompts under the same computation budget, we
+set a token length limit for retrieved units.
+For this reason, we follow an evaluation setup
+where the maximum number of retrieved tokens
+is capped at l = 100 or 500, i.e. only the top
+l tokens from passage, sentence, or proposition
+level retrieval are fed into the language model as
+input. We evaluate the percentage of questions for
+which the predicted answer exactly matches (EM)
+the ground truth. We denote our metric as EM @
+l tokens. We use LLaMA-2-7B (Touvron et al.,
+2023) in our evaluation. To ensure the model’s out-
+put aligns with the format of each dataset, we em-
+ploy in-context learning, incorporating four-shot
+demonstrations as illustrated in Figure 9.
+How Does Granularity Influence
+Passage Retrieval?
+In this section, we report and discuss how index-
+ing the corpus at various granularity influences the
+passage retrieval performance. Surprisingly, de-
+spite all of the dense retrieval models being trained
+on only passage-level documents, all the models
+demonstrate on-par or superior performance when
+the corpus is indexed at the proposition level. Our
+results suggest that indexing the corpus at the finer-
+grained units improves the cross-task generaliza-
+tion on passage retrieval.
+
+Passage Retrieval Performance
+We report our evaluation results in Table 3. We
+observe that retrieval by propositions outperforms
+retrieval by sentences or passages on most tasks for
+both unsupervised and supervised retrievers.
+With all dense retrievers tested, proposition-
+level retrieval consistently outperforms sentence
+and passage-level retrieval on average across the
+five datasets. With the unsupervised retrievers, i.e.
+SimCSE and Contriever, we see an averaged Re-
+call@5 improvement of +12.0 and +9.3 (35.0%
+and 22.5% relative improvement) on five datasets.
+With the supervised retrievers, proposition-level
+retrieval still shows an advantage on average, yet
+the sizes of improvements are smaller. We hypothe-
+size that this is due to these retrievers being trained
+on query-passage pairs. For instance, with DPR,
+which have been trained on NQ, TQA, WebQ, and
+SQuAD, we observe that proposition and sentence
+level retrieval perform slightly worse compared to
+passage level on three out of the four datasets, with
+the exception of SQuAD. As shown in Table 3, all
+supervised retrievers demonstrate comparable per-
+formance across three levels of retrieval granularity
+in NQ, TQA, and WebQ.
+However, on datasets that the retriever model has
+not seen during training, we observe that retrieval
+by proposition demonstrates a clear advantage. For
+instance, most notably on SQuAD or EntityQues-
+tions, we observe that proposition-based retrieval
+significantly outperforms the other two granulari-
+ties. We see 25% Recall@5 relative improvement
+on EntityQuestions with relatively weak retrievers
+like DPR. Furthermore, the Recall@5 of retrieval
+by proposition on SQuAD improved most on GTR,
+--- Page 6 ---

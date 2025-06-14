@@ -1,0 +1,47 @@
+LLMs-Generated Content. Addressing the limitations of
+external auxiliary information in RAG, some research has
+focused on exploiting LLMs’ internal knowledge. SKR [58]
+classifies questions as known or unknown, applying retrieval
+enhancement selectively. GenRead [13] replaces the retriever
+with an LLM generator, finding that LLM-generated contexts
+often contain more accurate answers due to better alignment
+with the pre-training objectives of causal language modeling.
+Selfmem [17] iteratively creates an unbounded memory pool
+with a retrieval-enhanced generator, using a memory selec-
+tor to choose outputs that serve as dual problems to the
+original question, thus self-enhancing the generative model.
+These methodologies underscore the breadth of innovative
+data source utilization in RAG, striving to improve model
+performance and task effectiveness.
+2) Retrieval Granularity: Another important factor besides
+the data format of the retrieval source is the granularity of
+the retrieved data. Coarse-grained retrieval units theoretically
+can provide more relevant information for the problem, but
+they may also contain redundant content, which could distract
+the retriever and language models in downstream tasks [50],
+[87]. On the other hand, fine-grained retrieval unit granularity
+increases the burden of retrieval and does not guarantee seman-
+tic integrity and meeting the required knowledge. Choosing
+
+--- Page 8 ---
+the appropriate retrieval granularity during inference can be
+a simple and effective strategy to improve the retrieval and
+downstream task performance of dense retrievers.
+In text, retrieval granularity ranges from fine to coarse,
+including Token, Phrase, Sentence, Proposition, Chunks, Doc-
+ument. Among them, DenseX [30]proposed the concept of
+using propositions as retrieval units. Propositions are defined
+as atomic expressions in the text, each encapsulating a unique
+factual segment and presented in a concise, self-contained nat-
+ural language format. This approach aims to enhance retrieval
+precision and relevance. On the Knowledge Graph (KG),
+retrieval granularity includes Entity, Triplet, and sub-Graph.
+The granularity of retrieval can also be adapted to downstream
+tasks, such as retrieving Item IDs [40]in recommendation tasks
+and Sentence pairs [38]. Detailed information is illustrated in
+
+B. Indexing Optimization
+In the Indexing phase, documents will be processed, seg-
+mented, and transformed into Embeddings to be stored in a
+vector database. The quality of index construction determines
+whether the correct context can be obtained in the retrieval

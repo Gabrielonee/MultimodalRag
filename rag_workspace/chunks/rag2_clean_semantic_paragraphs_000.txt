@@ -1,0 +1,69 @@
+--- Page 1 ---
+EMNLP 2024 Main Conference
+Dense X Retrieval: What Retrieval Granularity Should We Use?
+Tong Chen♣* Hongwei Wang♢Sihao Chen♡Wenhao Yu♢
+Kaixin Ma♢Xinran Zhao♠Hongming Zhang♢Dong Yu♢
+♣University of Washington
+♢Tencent AI Lab
+♡University of Pennsylvania
+♠Carnegie Mellon University
+
+Dense retrieval has become a prominent
+method to obtain relevant context or world
+knowledge in open-domain NLP tasks. When
+we use a learned dense retriever on a retrieval
+corpus at inference time, an often-overlooked
+design choice is the retrieval unit in which the
+corpus is indexed, e.g. document, passage, or
+sentence. We discover that the retrieval unit
+choice significantly impacts the performance of
+both retrieval and downstream tasks. Distinct
+from the typical approach of using passages or
+sentences, we introduce a novel retrieval unit,
+proposition, for dense retrieval. Propositions
+are defined as atomic expressions within text,
+each encapsulating a distinct factoid and pre-
+sented in a concise, self-contained natural lan-
+guage format. We conduct an empirical com-
+parison of different retrieval granularity. Our
+experiments reveal that indexing a corpus by
+fine-grained units such as propositions signif-
+icantly outperforms passage-level units in re-
+trieval tasks. Moreover, constructing prompts
+with fine-grained retrieved units for retrieval-
+augmented language models improves the per-
+formance of downstream QA tasks given a spe-
+cific computation budget.
+Introduction
+Dense retrievers are a popular class of techniques
+for accessing external information sources for open-
+domain NLP tasks (Karpukhin et al., 2020). Before
+we use a learned dense retriever to retrieve from a
+corpus, an imperative design decision we have to
+make is the retrieval unit – i.e. the granularity at
+which we segment and index the retrieval corpus
+for inference. In practice, the choice of retrieval
+units, e.g. documents, fixed-length passage chunks
+or sentences, etc, is usually pre-determined based
+* Work was done during internship at Tencent AI Lab,
+
+https://github.com/chentong0/
+factoid-wiki
+Question: What is the angle of the Tower of Pisa?
+
+Prior to restoration work performed be-
+tween 1990 and 2001, the tower leaned at
+an angle of 5.5 degrees, but the tower now
+leans at about 3.99 degrees. This means
+the top of the Leaning Tower of Pisa is dis-
+placed horizontally 3.9 meters (12 ft 10 in)
+from the center.
+
+Prior to restoration work performed be-
+tween 1990 and 2001, the tower leaned at
+an angle of 5.5 degrees, but the tower now
+leans at about 3.99 degrees.
+Proposition
+
+The Leaning Tower of Pisa now leans at
+about 3.99 degrees.

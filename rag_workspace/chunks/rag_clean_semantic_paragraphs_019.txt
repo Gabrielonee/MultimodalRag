@@ -1,0 +1,45 @@
+choice, domain-specific QA as well as long-form scenarios
+suitable for RAG. In addition to QA, RAG is continuously
+being expanded into multiple downstream tasks, such as Infor-
+mation Extraction (IE), dialogue generation, code search, etc. The main downstream tasks of RAG and their corresponding
+datasets are summarized in Table II. B. Evaluation Target
+Historically, RAG models assessments have centered on
+their execution in specific downstream tasks. These evaluations
+employ established metrics suitable to the tasks at hand. For
+instance, question answering evaluations might rely on EM
+and F1 scores [7], [45], [59], [72], whereas fact-checking
+tasks often hinge on Accuracy as the primary metric [4],
+[14], [42]. BLEU and ROUGE metrics are also commonly
+used to evaluate answer quality [26], [32], [52], [78]. Tools
+like RALLE, designed for the automatic evaluation of RAG
+applications, similarly base their assessments on these task-
+specific metrics [160]. Despite this, there is a notable paucity
+of research dedicated to evaluating the distinct characteristics
+of RAG models.The main evaluation objectives include:
+Retrieval Quality. Evaluating the retrieval quality is crucial
+for determining the effectiveness of the context sourced by
+the retriever component. Standard metrics from the domains
+of search engines, recommendation systems, and information
+retrieval systems are employed to measure the performance of
+the RAG retrieval module. Metrics such as Hit Rate, MRR, and
+NDCG are commonly utilized for this purpose [161], [162]. Generation Quality. The assessment of generation quality
+centers on the generator’s capacity to synthesize coherent and
+relevant answers from the retrieved context. This evaluation
+can be categorized based on the content’s objectives: unlabeled
+and labeled content. For unlabeled content, the evaluation
+encompasses the faithfulness, relevance, and non-harmfulness
+of the generated answers. In contrast, for labeled content,
+the focus is on the accuracy of the information produced by
+the model [161]. Additionally, both retrieval and generation
+quality assessments can be conducted through manual or
+automatic evaluation methods [29], [161], [163]. C. Evaluation Aspects
+Contemporary evaluation practices of RAG models empha-
+size three primary quality scores and four essential abilities,
+which collectively inform the evaluation of the two principal
+targets of the RAG model: retrieval and generation. 1) Quality Scores: Quality scores include context rele-
+vance, answer faithfulness, and answer relevance. These qual-
+ity scores evaluate the efficiency of the RAG model from
+different perspectives in the process of information retrieval
+and generation [164]–[166]. Context Relevance evaluates the precision and specificity
+of the retrieved context, ensuring relevance and minimizing
+processing costs associated with extraneous content.

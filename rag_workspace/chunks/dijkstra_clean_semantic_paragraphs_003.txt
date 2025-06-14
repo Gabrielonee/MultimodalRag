@@ -1,0 +1,45 @@
+The flow of research methodology can be described as follows. First, collecting of 
+customer location/address data. Then, processing location data into distance data traveled from 
+one location to another. Second, constructing this data as an initial model i.e. a connected 
+weighted graph. Third, running the Dijkstra algorithm  on this graph so that the shortest route 
+is obtained. This shortest route should visit all customers and return again to the drop point. 
+Thus, this route is either a closed path (cycle) or a closed trail (circuit) that is a subgraph of the 
+initial model graph.
+
+The initial model graph is constructed from data on the number of customers, customer 
+locations, the existence of roads connecting one location to another, road conditions traveled, 
+and mileage between locations. The road connecting these locations must be passable by a 
+motorcycle. In this model, if there is no road connecting 2 locations directly then there is no 
+edge between the 2 locations. Thus, the initial model graph of this algorithm is a connected 
+weighted graph, namely G, as shown in Figure 1.
+
+Figure 1 The Initial Model Graph G
+
+Vertex 1 is the drop point of PT. J&T Express Sarijadi which is the starting point or the 
+initial vertex of the route. Vertex 2 until vertex 13 are customers who will be visited by a 
+courier one by one sequentially according to the Dijkstra algorithm. The initial model 
+constructed graph is not a complete graph because not all vertices are directly connected to 
+other vertices by an edge. It is a graph with 13 vertices and 21 edges.
+
+Figure 2 shows a matrix adjacent of the initial model graph. Matrix elements are 
+weights on the edges of the graph. The weight of the edges is the mileage from one location 
+to another in meters. The element on the main diagonal of the matrix is zero, since there is
+
+--- Page 4 ---
+DIJKSTRA ALGORITHM IN DETERMINING THE SHORTEST ROUTE FOR DELIVERY SERVICE BY J&T 
+EXPRESS IN BANDUNG 
+Anie Lusiani, Siti Samsiyah Purwaningsih, Euis Sartika 
+Vol. 4, No. 2, Agustus 2023 hal. 940-948 
+DOI Artikel: 10.46306/lb.v4i2.337 
+no distance between the same vertices. This matrix is symmetrical, because the mileage 
+from vertex i to vertex j is equal to the mileage from vertex j to vertex i.
+
+Figure 2 Matrix Adjacent of Graph G
+
+The steps of the Dijkstra algorithm work as follows. The first step is to establish a 
+starting point with the status of having been found and has been visited. A courier picks up 
+packages of goods sent to customers at the Sarijadi drop point, so vertex 1 is the starting point 
+of the route. Thus, the status of vertex 1 has been found and visited. The second step is to find 
+other vertices that are adjacent to vertex 1. If these vertices have not yet found, then change 
+their status to be found. However, if it has been found then only update the weight. The third 
+step is to choose a vertex with a minimum weight to visit.

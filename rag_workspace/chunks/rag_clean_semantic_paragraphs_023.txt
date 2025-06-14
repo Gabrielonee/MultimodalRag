@@ -1,0 +1,99 @@
+SUMMARY OF EVALUATION FRAMEWORKS
+Evaluation Framework
+Evaluation Targets
+Evaluation Aspects
+Quantitative Metrics
+
+Retrieval Quality
+Generation Quality
+Noise Robustness
+Negative Rejection
+Information Integration
+Counterfactual Robustness
+
+Generation Quality
+Counterfactual Robustness
+R-Rate (Reappearance Rate)
+
+Retrieval Quality
+Generation Quality
+Context Relevance
+Faithfulness
+Answer Relevance
+
+Cosine Similarity
+
+Retrieval Quality
+Generation Quality
+Context Relevance
+Faithfulness
+Answer Relevance
+
+Retrieval Quality
+Generation Quality
+Context Relevance
+Faithfulness
+Answer Relevance
+
+Retrieval Quality
+Generation Quality
+Creative Generation
+Knowledge-intensive QA
+Error Correction
+Summarization
+
+RAGQuestEval
+† represents a benchmark, and ‡ represents a tool. * denotes customized quantitative metrics, which deviate from traditional
+metrics. Readers are encouraged to consult pertinent literature for the specific quantification formulas associated with these
+metrics, as required.
+and non-parameterized advantages are areas ripe for explo-
+ration [27]. Another trend is to introduce SLMs with specific
+functionalities into RAG and fine-tuned by the results of RAG
+system. For example, CRAG [67] trains a lightweight retrieval
+evaluator to assess the overall quality of the retrieved docu-
+ments for a query and triggers different knowledge retrieval
+actions based on confidence levels.
+D. Scaling laws of RAG
+End-to-end RAG models and pre-trained models based
+
+searchers [173].The parameters of these models are one of
+the key factors.While scaling laws [174] are established for
+LLMs, their applicability to RAG remains uncertain. Initial
+studies like RETRO++ [44] have begun to address this, yet the
+parameter count in RAG models still lags behind that of LLMs.
+The possibility of an Inverse Scaling Law 10, where smaller
+models outperform larger ones, is particularly intriguing and
+merits further investigation.
+E. Production-Ready RAG
+RAG’s practicality and alignment with engineering require-
+ments have facilitated its adoption. However, enhancing re-
+trieval efficiency, improving document recall in large knowl-
+edge bases, and ensuring data security—such as preventing
+10https://github.com/inverse-scaling/prize
+inadvertent disclosure of document sources or metadata by
+LLMs—are critical engineering challenges that remain to be
+addressed [175].
+The development of the RAG ecosystem is greatly impacted
+by the progression of its technical stack. Key tools like
+LangChain and LLamaIndex have quickly gained popularity
+with the emergence of ChatGPT, providing extensive RAG-
+related APIs and becoming essential in the realm of LLMs.The
+emerging technology stack, while not as rich in features as
+LangChain and LLamaIndex, stands out through its specialized
+products. For example, Flowise AI prioritizes a low-code
+approach, allowing users to deploy AI applications, including
+RAG, through a user-friendly drag-and-drop interface. Other
+technologies like HayStack, Meltano, and Cohere Coral are
+also gaining attention for their unique contributions to the field.
+In addition to AI-focused vendors, traditional software and
+cloud service providers are expanding their offerings to include
+RAG-centric services. Weaviate’s Verba 11 is designed for
+personal assistant applications, while Amazon’s Kendra
+offers intelligent enterprise search services, enabling users to
+browse various content repositories using built-in connectors.
+In the development of RAG technology, there is a clear
+trend towards different specialization directions, such as: 1)
+Customization - tailoring RAG to meet specific requirements.
+2) Simplification - making RAG easier to use to reduce the
+11https://github.com/weaviate/Verba
+12https://aws.amazon.com/cn/kendra/

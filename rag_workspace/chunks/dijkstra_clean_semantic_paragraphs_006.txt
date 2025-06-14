@@ -1,0 +1,56 @@
+Table 5 The Vertices Conditions in The Last Loop of Algorithm Dijkstra
+
+(1, 9, 10, 11, 12, 13, 4, 3, 2, 8,7,6,5,1)
+
+(1, 9, 10, 11, 12, 13, 4, 3, 2)
+
+(1, 9, 10, 11, 12, 13, 4, 3)
+
+(1, 9, 10, 11, 12, 13, 4)
+
+(1, 9, 10, 11, 12, 13, 4, 3, 2, 8,7,6,5)
+
+(1, 9, 10, 11, 12, 13, 4, 3, 2, 8,7,6)
+
+(1, 9, 10, 11, 12, 13, 4, 3, 2, 8,7)
+
+(1, 9, 10, 11, 12, 13, 4, 3, 2, 8)
+
+(1, 9, 10)
+
+(1, 9, 10, 11)
+
+(1, 9, 10, 11, 12)
+
+(1, 9, 10, 11, 12, 13)
+
+CONCLUSION
+
+After running Dijkstra algorithm on the initial model graph G, the shortest closed route 
+as a subgraph of connected weighted graph G is obtained. This route is a cycle 
+(1, 9, 10, 11, 12, 13, 4, 3, 2, 8, 7, 6, 5, 1) with a weight of 1890 meters. This route is a cycle 
+that containing every vertex in graph G. A graph of order n is called Hamiltonian if it contains 
+a cycle of length n (Lusiani, Baskoro, and Saputro 2017). The number of vertex in graph G is 
+13 and the length of  cycle (1, 9, 10, 11, 12, 13, 4, 3, 2, 8, 7, 6, 5, 1) is 13. Therefore, graph G is 
+a Hamiltonian.
+
+For different cases, it is possible to find a closed route that is a circuit. Thus this route 
+is a closed trail, so the graph G is an Eulerian. In different optimization problems, Neumann 
+has shown that a well-known EA variant (1+1) working on encoding important permutations 
+can find Eulerian tours of Eulerian graphs in the expected polynomial time (Neumann 2004).
+
+If we pay attention to road direction engineering carried out by traffic police in the 
+Sarijadi area, then the graph G will become a digraph (directed graph), which is a graph that 
+has directions. In this case, it is possible that a road can only be traveled in one direction, so 
+the optimization results by the Dijkstra algorithm will be different.
+
+ACKNOWLEDGMENT 
+This research was supported by “DIPA POLBAN in Research scheme  Penelitian Terapan (PT) 
+Nomor: B/92.35/PL1.R7/PG.00.03/2023, Politeknik Negeri Bandung, Indonesia”.
+
+REFERENCES 
+Ahmed, Aram M, Sarkar Hasan Ahmed, and Omed Hassan Ahmed. 2017. “Dijkstra Algorithm 
+Applied: Design and Implementation of a Framework to Find Nearest Hotels and Booking 
+Systems in Iraqi.” In 2017 International Conference on Current Research in Computer 
+Science and Information Technology (ICCIT), IEEE, 126–32. 
+Alonso, F R, Denisson Q Oliveira, and A C Zambroni De Souza. 2014. “Artificial Immune

@@ -1,0 +1,53 @@
+Recall@5 (%)
+
+Passage Retrieval
+
+Open-domain QA
+
+Proposition
+Figure 1: (Top) An example of three granularities of
+retrieval units of Wikipedia text when using dense re-
+trieval. (Bottom) We observe that retrieving by proposi-
+tions yields the best retrieval performance in both pas-
+sage retrieval task and downstream open-domain QA
+task, e.g. with Contriever (Izacard et al., 2022) or GTR
+(Ni et al., 2022) as the backbone retriever. Highlight in-
+dicates the part that contains the answer to the question.
+on how the dense retrieval model is instantiated
+or trained (Lewis et al., 2020; Lee et al., 2021a;
+Santhanam et al., 2022; Ni et al., 2022).
+In this paper, we investigate an overlooked re-
+search question with dense retrieval inference – at
+what retrieval granularity should we segment and
+index the retrieval corpus? We aim to investigate
+this question in two aspects.
+• First, we examine how the granularity of the
+index affects passage retrieval performance.
+• Second, we investigate whether fine-grained units
+arXiv:2312.06648v3  [cs.CL]  4 Oct 2024
+
+--- Page 2 ---
+1. Prior to restoration work performed 
+between 1990 and 2001, the Leaning Tower 
+of Pisa leaned at an angle of 5.5 degrees.
+2. The Leaning Tower of Pisa now leans at 
+about 3.99 degrees.
+3. The top of the Leaning Tower of Pisa is 
+displaced horizontally 3.9 meters (12 ft 10 in) 
+from the center.
+Prior to restoration work performed between 
+1990 and 2001, the tower leaned at an angle of 
+5.5 degrees , // but the tower now leans at 
+about 3.99 degrees. // This means the top of the 
+Learning Tower of Pisa is displaced horizontally 
+3.9 meters (12 ft 10 in) from the center.
+
+FactoidWiki
+
+Retrieval Units
+
+Passage Retrieval
+
+Propositionizer
+
+Propositions

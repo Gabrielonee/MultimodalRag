@@ -1,0 +1,780 @@
+--- Page 1 ---
+EMNLP 2024 Main Conference
+Dense X Retrieval: What Retrieval Granularity Should We Use?
+Tong Chen♣* Hongwei Wang♢Sihao Chen♡Wenhao Yu♢
+Kaixin Ma♢Xinran Zhao♠Hongming Zhang♢Dong Yu♢
+♣University of Washington
+♢Tencent AI Lab
+♡University of Pennsylvania
+♠Carnegie Mellon University
+
+Dense retrieval has become a prominent
+method to obtain relevant context or world
+knowledge in open-domain NLP tasks. When
+we use a learned dense retriever on a retrieval
+corpus at inference time, an often-overlooked
+design choice is the retrieval unit in which the
+corpus is indexed, e.g. document, passage, or
+sentence. We discover that the retrieval unit
+choice significantly impacts the performance of
+both retrieval and downstream tasks. Distinct
+from the typical approach of using passages or
+sentences, we introduce a novel retrieval unit,
+proposition, for dense retrieval. Propositions
+are defined as atomic expressions within text,
+each encapsulating a distinct factoid and pre-
+sented in a concise, self-contained natural lan-
+guage format. We conduct an empirical com-
+parison of different retrieval granularity. Our
+experiments reveal that indexing a corpus by
+fine-grained units such as propositions signif-
+icantly outperforms passage-level units in re-
+trieval tasks. Moreover, constructing prompts
+with fine-grained retrieved units for retrieval-
+augmented language models improves the per-
+formance of downstream QA tasks given a spe-
+cific computation budget.
+Introduction
+Dense retrievers are a popular class of techniques
+for accessing external information sources for open-
+domain NLP tasks (Karpukhin et al., 2020). Before
+we use a learned dense retriever to retrieve from a
+corpus, an imperative design decision we have to
+make is the retrieval unit – i.e. the granularity at
+which we segment and index the retrieval corpus
+for inference. In practice, the choice of retrieval
+units, e.g. documents, fixed-length passage chunks
+or sentences, etc, is usually pre-determined based
+* Work was done during internship at Tencent AI Lab,
+
+https://github.com/chentong0/
+factoid-wiki
+Question: What is the angle of the Tower of Pisa?
+
+Prior to restoration work performed be-
+tween 1990 and 2001, the tower leaned at
+an angle of 5.5 degrees, but the tower now
+leans at about 3.99 degrees. This means
+the top of the Leaning Tower of Pisa is dis-
+placed horizontally 3.9 meters (12 ft 10 in)
+from the center.
+
+Prior to restoration work performed be-
+tween 1990 and 2001, the tower leaned at
+an angle of 5.5 degrees, but the tower now
+leans at about 3.99 degrees.
+Proposition
+
+The Leaning Tower of Pisa now leans at
+about 3.99 degrees.
+
+Recall@5 (%)
+
+Passage Retrieval
+
+Open-domain QA
+
+Proposition
+Figure 1: (Top) An example of three granularities of
+retrieval units of Wikipedia text when using dense re-
+trieval. (Bottom) We observe that retrieving by proposi-
+tions yields the best retrieval performance in both pas-
+sage retrieval task and downstream open-domain QA
+task, e.g. with Contriever (Izacard et al., 2022) or GTR
+(Ni et al., 2022) as the backbone retriever. Highlight in-
+dicates the part that contains the answer to the question.
+on how the dense retrieval model is instantiated
+or trained (Lewis et al., 2020; Lee et al., 2021a;
+Santhanam et al., 2022; Ni et al., 2022).
+In this paper, we investigate an overlooked re-
+search question with dense retrieval inference – at
+what retrieval granularity should we segment and
+index the retrieval corpus? We aim to investigate
+this question in two aspects.
+• First, we examine how the granularity of the
+index affects passage retrieval performance.
+• Second, we investigate whether fine-grained units
+arXiv:2312.06648v3  [cs.CL]  4 Oct 2024
+
+--- Page 2 ---
+1. Prior to restoration work performed 
+between 1990 and 2001, the Leaning Tower 
+of Pisa leaned at an angle of 5.5 degrees.
+2. The Leaning Tower of Pisa now leans at 
+about 3.99 degrees.
+3. The top of the Leaning Tower of Pisa is 
+displaced horizontally 3.9 meters (12 ft 10 in) 
+from the center.
+Prior to restoration work performed between 
+1990 and 2001, the tower leaned at an angle of 
+5.5 degrees , // but the tower now leans at 
+about 3.99 degrees. // This means the top of the 
+Learning Tower of Pisa is displaced horizontally 
+3.9 meters (12 ft 10 in) from the center.
+
+FactoidWiki
+
+Retrieval Units
+
+Passage Retrieval
+
+Propositionizer
+
+Propositions
+
+Figure 2: We discover that segmenting and indexing a retrieval corpus on the proposition level can be a simple yet
+effective strategy to increase dense retrievers’ generalization performance at inference time (A, B). We empirically
+compare the retrieval and downstream open-domain QA task performance when dense retrievers work with
+Wikipedia indexed at the level of 100-word passages, sentences, or propositions (C, D).
+can replace passages in downstream QA tasks.
+Based on our empirical experiments, we discover
+that selecting the proper retrieval granularity at in-
+ference time can be a simple yet effective strategy
+for improving dense retrievers’ retrieval and down-
+stream QA performance. We illustrate our intuition
+with an example of open-domain QA in Table 1.
+The example shows retrieved text by the same re-
+triever at three different granularities. The pas-
+sage, which represents a coarser retrieval unit with
+a longer context, is theoretically able to provide
+more relevant information for the question. How-
+ever, a passage often includes extraneous details
+(e.g., restoration period and horizontal displace-
+ment in the example of Table 1) that could poten-
+tially distract both the retriever and the language
+model in downstream tasks (Shi et al., 2023; Yu
+et al., 2023b). On the other hand, sentence-level in-
+dexing provides a finer-grained approach but does
+not entirely address the issue (Akkalyoncu Yilmaz
+et al., 2019; Yang et al., 2020). This is because
+sentences can still be complex and compounded,
+and they are often not self-contained, lacking nec-
+essary contextual information (e.g., in the example
+of Table 1, “the tower” is the coreference of “Pisa
+Tower”) for judging the query-document relevance.
+To address these shortcomings of typical re-
+trieval units such as passages or sentences, we pro-
+pose using proposition as a novel retrieval unit for
+dense retrieval. Propositions are defined as atomic
+expressions within text, where each encapsulates
+a distinct factoid and is presented in a concise,
+self-contained natural language format. We show
+an example proposition in Table 1. The proposi-
+tion describes the information regarding the Tower
+of Pisa’s current leaning angle in a self-contained
+way and precisely responds to what the question
+is querying. We provide a more detailed definition
+and description of proposition in §2. To validate
+the efficacy of using proposition as a retrieval unit
+for dense retrievers inference, we first process and
+index an English Wikipedia dump with all docu-
+ments segmented into propositions, which we refer
+to as FACTOIDWIKI.
+We conduct experiments on five different open-
+domain QA datasets and empirically compare the
+performance of four dual-encoder retrievers when
+Wikipedia is indexed by passages, sentences, and
+our proposed propositions. Notably, our findings in-
+dicate that proposition-based retrieval outperforms
+sentence and passage-based retrieval, especially in
+terms of generalization, as discussed in §5. This
+suggests that propositions, being both compact and
+rich in context, enable dense retrievers to access
+precise information while maintaining adequate
+context. The average improvement over passage-
+based retrieval of Recall@20 is +10.1 on unsuper-
+vised dense retrievers and +2.7 on supervised re-
+trievers, even though these retrievers were directly
+trained on passage-level retrieval. Furthermore,
+we observe a distinct advantage of proposition-
+based retrieval in downstream QA performance
+when using retrieval-augmented language models,
+as elaborated in §6. Retrieval by finer-grained units
+inherently provides a higher density of question-
+relevant information. This finding implies using
+finer-grained units in the prompts achieves the same
+performance with a shorter input length, and hence,
+a faster inference time.
+Our main contributions are:
+--- Page 3 ---
+• We provide a systemic study on how retrieval
+granularity impacts retrieval and downstream
+task performance. We observe that the retrieval
+units have a significant impact on performance.
+• We introduce FACTOIDWIKI, a processed En-
+glish Wikipedia dump, where each page is seg-
+mented into multiple granularities: passages, sen-
+tences, and our proposed propositions.
+• We propose retrieval by proposition as an alter-
+native strategy, which achieves better retrieval
+and QA accuracy and generalization performance
+(with unsupervised retriever), compared to pas-
+sage or sentence as retrieval unit.
+Proposition as a Retrieval Unit
+The goal of our study is to understand how the gran-
+ularity of a retrieval corpus influences the dense
+retrieval models’ performance empirically. Aside
+from commonly-used retrieval units such as 100-
+word passages (Karpukhin et al., 2020) or sen-
+tences, we propose using proposition as an alterna-
+tive retrieval unit choice. Here, propositions repre-
+sent atomic expressions of meanings in text (Min
+et al., 2023) with three defining principles below.
+1. Each proposition should correspond to a distinct
+piece of meaning in text, where the composition
+of all propositions would represent the seman-
+tics of the entire text.
+2. A proposition should be minimal, i.e. it cannot
+be further split into separate propositions.
+3. A proposition should be contextualized and self-
+contained (Choi et al., 2021). A proposition
+should include all the necessary context from the
+text (e.g. coreference) to interpret its meaning.
+The use of proposition as a retrieval unit is in-
+spired by a recent line of work (Min et al., 2023;
+Kamoi et al., 2023; Chen et al., 2023a,b), which
+finds success in representing and evaluating text
+semantics at the level of propositions. We demon-
+strate the concept of proposition and how a passage
+can be split into a set of propositions by an example
+on the left side of Figure 2. The passage contains
+three propositions, each of which corresponds to
+a distinct factoid about the Leaning Tower of Pisa:
+the angle before the restoration, the current angle,
+and the horizontal displacement.
+Within each proposition, necessary context from
+the passage is incorporated so that the meaning of
+the proposition can be interpreted independently of
+
+Avg. # words
+
+Propositions
+
+Table 1: Statistics of text units in the English Wikipedia.
+the original text, e.g. the reference of the tower is
+resolved into its full mention, the Leaning Tower
+of Pisa, in the first proposition. We expect each
+proposition to describe exactly one atomic fact, and
+so our intuition is that propositions would suitably
+work as a retrieval unit for information-seeking
+
+FACTOIDWIKI: Proposition-Level
+Index and Retrieval for Wikipedia
+We empirically compare passages, sentences, and
+propositions as retrieval units on Wikipedia, a
+commonly-used retrieval source for knowledge-
+intensive NLP tasks (Petroni et al., 2021). To allow
+a fair comparison across granularities, we process
+an English Wikipedia dump from 2021-10-13, as
+used by Bohnet et al. (2022). We segment each doc-
+ument text into three different granularities: pas-
+sages, sentences, and propositions. We include the
+details on passage- and sentence-level segmenta-
+tion of the corpus in Appendix A.
+Parsing Passage to Propositions.
+
+the Wikipedia pages into propositions, we finetune
+a text generation model, which we refer to as the
+Propositionizer. The Propositionizer takes a pas-
+sage as input and generates the list of propositions
+within the passage.
+Following Chen et al. (2023b), we train the
+Propositionizer with a two-step distillation process.
+We first prompt GPT-4 (OpenAI, 2023) with an
+instruction containing the proposition definition
+and 1-shot demonstration. We include the details
+of the prompt in Figure 8. We start with a set of
+42k passages and use GPT-4 to generate the seed
+set of paragraph-to-proposition pairs. Next, we
+use the seed set to finetune a Flan-T5-large model
+(Chung et al., 2022). We refer to the processed
+corpus as FACTOIDWIKI. The statistics of FAC-
+TOIDWIKI are shown in Table 1.
+Quality Analysis.
+We conduct a manual error
+analysis to understand the quality of propositions
+generated by GPT-4 and the Propositionizer. While
+there does not exist a fixed standard on deciding
+--- Page 4 ---
+
+Propositionizer
+Not Faithful
+0.7% (3/408)
+1.3% (6/445)
+Not Minimal
+2.9% (12/408)
+2.0% (9/445)
+Not Stand-alone
+4.9% (20/408)
+3.1% (14/445)
+Table 2: Frequency of errors occurred in the generated
+propositions. Most generated propositions are faithful,
+while a small portion of them are not stand-alone.
+a ground truth set of propositions for a passage,
+we estimate the frequency of error cases where
+(1) a proposition is not fully supported by the pas-
+sage, (2) a proposition can be further split into
+separate propositions, and (3) propositions are not
+self-contained, respectively (Table 2). On a random
+sample of 50 passages, we observe that almost all
+propositions generated by both models are faithful,
+while a small portion of the propositions are not
+stand-alone.
+Experimental Settings
+To evaluate the impact of the three retrieval unit
+choices, we conduct experiments on five differ-
+ent open-domain QA datasets with FACTOIDWIKI.
+With each dataset, we evaluate both passage re-
+trieval and downstream QA performance when
+dense retrievers work with Wikipedia indexed in
+different granularities.
+
+Open-Domain QA Datasets
+We experiment on five different open-domain QA
+datasets with Wikipedia as the retrieval source: Nat-
+ural Questions (NQ, Kwiatkowski et al., 2019),
+TriviaQA (TQA, Joshi et al., 2017), Web Ques-
+tions (WebQ, Berant et al., 2013), SQuAD (Ra-
+jpurkar et al., 2016), and Entity Questions (EQ,
+Sciavolino et al., 2021).
+
+Dense Retrieval Models
+We compare the performance of the four following
+supervised or unsupervised dense retriever mod-
+els. Here, supervised models refer to ones that
+have used human-labeled query-passage pairs as
+supervision during training, and vice versa.
+• SimCSE (Gao et al., 2021) is a BERT-base (De-
+vlin et al., 2019) encoder trained on unlabeled
+sentences sampled randomly from Wikipedia.
+SimCSE can be transferred to use as an unsu-
+pervised retriever (Chen et al., 2023b).
+• Contriever (Izacard et al., 2022) is an unsuper-
+vised retriever, instantiated with a BERT-base
+encoder. Contriever is contrastively trained by
+segment pairs constructed from unlabeled docu-
+ments from Wikipedia and web crawl data.
+• DPR (Karpukhin et al., 2020) is a dual-encoder
+BERT-base model fine-tuned on passage retrieval
+tasks directly using the question-passage pair la-
+bels from NQ, TQA, WebQ and SQuAD.
+• GTR (Ni et al., 2022) is a T5-base encoder (Raf-
+fel et al., 2020) pretrained on online forum QA
+data, and fine-tuned with question-passage pair
+labels on MS MARCO (Nguyen et al., 2016) and
+NQ datasets.
+
+Passage Retrieval Evaluation
+We evaluate the retrieval performance at the pas-
+sage level when the corpus is indexed at the pas-
+sage, sentence, or proposition level respectively.
+For sentence and proposition level retrieval, we
+follow the setting introduced in Lee et al. (2021b),
+where the score of the passage is based on the max-
+imum similarity score between the query and all
+sentences or propositions in a passage. In practice,
+we first retrieve a slightly larger number of text
+units, then map each unit to the source passage,
+and eventually return the top-k unique passages.
+We use Passage Recall@k as our evaluation metric,
+which is defined as the percentage of questions for
+which the correct answer is found within the top-k
+retrieved passages.
+To further understand how different retrieved
+passages affect the downstream QA. We use Fusion-
+in-Decoder (FiD, Izacard and Grave, 2021) model
+to extract answers from retrieved passages. We use
+a T5-large sized FiD model trained on NQ dataset
+in our experiments. The exact match (EM) score
+computes the percentage of questions for which the
+predicted answer exactly matches the ground truth.
+
+Open-domain QA Evaluation on
+Retrieval-Augmented Language Models
+Another aspect of the choice of granularity lies
+in what units should be used in the prompt for
+retrieval-augmented language models. For large
+language models, retrieval-augmented generation
+is achieved by prepending retrieved units to user in-
+struction and taking them as the input for language
+models. We aim to understand the implications of
+using retrieved units of different granularity within
+the same computational budget at inference time.
+To fairly compare using different granularity in the
+--- Page 5 ---
+
+Granularity
+
+Unsupervised Dense Retrievers
+
+Proposition
+
+Proposition
+
+Supervised Dense Retrievers
+
+Proposition
+
+Proposition
+
+Table 3: Passage retrieval performance (Recall@k = 5, 20) on five different open-domain QA datasets when
+pre-trained dense retrievers work with the three different granularity from the retrieval corpus. Underline denotes
+cases where the training split of the target dataset was included in the training data of the dense retriever.
+prompts under the same computation budget, we
+set a token length limit for retrieved units.
+For this reason, we follow an evaluation setup
+where the maximum number of retrieved tokens
+is capped at l = 100 or 500, i.e. only the top
+l tokens from passage, sentence, or proposition
+level retrieval are fed into the language model as
+input. We evaluate the percentage of questions for
+which the predicted answer exactly matches (EM)
+the ground truth. We denote our metric as EM @
+l tokens. We use LLaMA-2-7B (Touvron et al.,
+2023) in our evaluation. To ensure the model’s out-
+put aligns with the format of each dataset, we em-
+ploy in-context learning, incorporating four-shot
+demonstrations as illustrated in Figure 9.
+How Does Granularity Influence
+Passage Retrieval?
+In this section, we report and discuss how index-
+ing the corpus at various granularity influences the
+passage retrieval performance. Surprisingly, de-
+spite all of the dense retrieval models being trained
+on only passage-level documents, all the models
+demonstrate on-par or superior performance when
+the corpus is indexed at the proposition level. Our
+results suggest that indexing the corpus at the finer-
+grained units improves the cross-task generaliza-
+tion on passage retrieval.
+
+Passage Retrieval Performance
+We report our evaluation results in Table 3. We
+observe that retrieval by propositions outperforms
+retrieval by sentences or passages on most tasks for
+both unsupervised and supervised retrievers.
+With all dense retrievers tested, proposition-
+level retrieval consistently outperforms sentence
+and passage-level retrieval on average across the
+five datasets. With the unsupervised retrievers, i.e.
+SimCSE and Contriever, we see an averaged Re-
+call@5 improvement of +12.0 and +9.3 (35.0%
+and 22.5% relative improvement) on five datasets.
+With the supervised retrievers, proposition-level
+retrieval still shows an advantage on average, yet
+the sizes of improvements are smaller. We hypothe-
+size that this is due to these retrievers being trained
+on query-passage pairs. For instance, with DPR,
+which have been trained on NQ, TQA, WebQ, and
+SQuAD, we observe that proposition and sentence
+level retrieval perform slightly worse compared to
+passage level on three out of the four datasets, with
+the exception of SQuAD. As shown in Table 3, all
+supervised retrievers demonstrate comparable per-
+formance across three levels of retrieval granularity
+in NQ, TQA, and WebQ.
+However, on datasets that the retriever model has
+not seen during training, we observe that retrieval
+by proposition demonstrates a clear advantage. For
+instance, most notably on SQuAD or EntityQues-
+tions, we observe that proposition-based retrieval
+significantly outperforms the other two granulari-
+ties. We see 25% Recall@5 relative improvement
+on EntityQuestions with relatively weak retrievers
+like DPR. Furthermore, the Recall@5 of retrieval
+by proposition on SQuAD improved most on GTR,
+--- Page 6 ---
+
+Proposition
+Figure 3: Document retrieval recall vs. the frequency of the target entity in each question from the Entity Questions
+dataset. The frequency of each entity (i.e. smaller value ⇒less common entities, and vice versa) is estimated by
+the frequency of the entity in its top-1000 passage retrieved by BM25. On queries with less common entities, we
+observe that retrieving by proposition shows a larger advantage over retrieval by proposition.
+
+Granularity
+
+Unsupervised Dense Retrievers
+
+Proposition
+
+Proposition
+
+Supervised Dense Retrievers
+
+Proposition
+
+Proposition
+
+Table 4: Open-domain QA performance (Exact Match) using Fusion-in-Decoder model (Izacard and Grave, 2021)
+to extract answer from top-5 and top-20 passages retrieved on the index of passages, sentences, and propositions.
+with 16% relative improvements.
+
+Retrieval on Finer-grained Index ⇒
+Better Cross-Task Generalization
+Our results show the advantage of retrieval on
+proposition-level index in cross-task generalization
+settings. We observe that on SQuAD and Entity
+Questions, retrieval on the proposition-level index
+brings more performance gain over the passage-
+level index and sentence-level index.
+To better understand where the improvements
+can be attributed, we conduct an additional analysis
+on Entity Questions. As Entity Questions features
+questions targeting the properties of longer-tail enti-
+ties, we study how the retrieval performance under
+three different granularities is affected by the occu-
+rance of the target entity in question, i.e. whether
+the entity appears frequently in Wikipedia or not.
+We estimate the frequency of each entity with the
+following method. Given the surface form of an en-
+tity, we use BM25 to retrieve the top 1000 relevant
+passages from Wikipedia. We use the number of
+occurrences of the entity in its relevant passages as
+an estimate of its frequency. With the 20,000 test
+queries, around 25% of the target entities have an
+frequency value of less or equal to 3.
+Figure 3 shows the passage retrieval perfor-
+mance vs. the frequency of the target entity in
+each question. Across all four dense retrievers,
+we observe that retrieving by proposition shows a
+much larger advantage over retrieving by passages
+with questions targeting less common entities. As
+the frequency of entities increases, the performance
+gap decreases. Our findings indicate that the per-
+formance gain from retrieval by proposition can
+mostly be attributed to queries for long-tailed infor-
+mation. This echoes our observation that retrieval
+on proposition-level index improves the cross-task
+generalization performance of dense retrievers.
+
+Higher Passage Recall ⇒Higher
+Downstream QA Accuracy
+To further understand whether the passage retrieval
+on a finer-grained index achieves higher down-
+--- Page 7 ---
+stream QA performance, we extract the answer
+from the retrieved passage by a QA reader, Fusion-
+in-decoder. The results are shown in Table 4.
+Retrieval by proposition-level index achieves the
+highest average exact match (EM) on all four re-
+triever models. Apart from limited exceptions, the
+proposition-level index achieves the highest EM
+for most retrieval tasks and on most datasets. We
+observe that the trend of downstream QA perfor-
+mance is highly consistent with passage retrieval
+recall, suggesting higher passage recall implies bet-
+ter downstream QA performance.
+How Does Granularity Influence
+Retrieval-Augmented LMs?
+In this section, we study how the choice of different
+granularity used in the prompts affects the retrieval-
+augmented generation across open-domain QA
+tasks. To fairly compare different granularity with
+the same computation budget, we limit the num-
+ber of retrieved tokens for input to the language
+model at l = 100 or 500 tokens. Our results sug-
+gest that retrieval by finer-grained units enables a
+higher density of question-related information in
+the prompts, leading to better performance.
+
+Open-domain QA Performance
+Table 5 shows the evaluation results with LLaMA-
+2-7B as the language model. Across different re-
+trievers, we observe higher QA performance in
+terms of the EM@l metric on average when using
+propositions as the retrieval unit.
+Using propositions rather than passages in the
+prompts, the four dense retrievers—SimCSE, Con-
+Retriever, DPR, and GTR—improve by +4.1, +3.2,
++2.7, and +2.8 in the EM@500 score. The improve-
+ments for using sentences over passages for the
+four retrieval models are +2.4, +2.1, +2, and +1.6,
+respectively. It is interesting to note that in the
+LLaMA-2-7B model, the QA accuracy on TQA
+and WebQ is not sensitive to retrieval type. The
+highest improvements over the closed-book setting
+are only +4.9 and +3.2, achieved by GTR with
+propositions. Nevertheless, we observe that using
+sentences and propositions in the prompts results
+in higher performance than using passages for all
+retrieval models on these two datasets. The results
+suggest that using finer-grained units in the prompts
+is beneficial to retrieval-augmented generation.
+
+Finer-grained Granularity ⇒Higher
+Density of Question-Related Information
+Intuitively, compared to sentences or passages as
+retrieval units, the advantage of propositions is that
+the retrieved propositions have a higher density
+of relevant information to the query. With finer-
+grained retrieval units, the correct answer to the
+query would more likely appear in the top-l re-
+trieved words by a dense retriever.
+We illustrate this phenomenon by an analysis
+shown in Figure 4. Here, we investigate the posi-
+tion at which the ground truth answer appears in
+the top-l retrieved words. Specifically, we calcu-
+late the recall of the gold answer within the initial l
+retrieved words with GTR working with Wikipedia
+indexed in three different granularities.
+We show the results in Figure 4 and 7 with l
+ranging from 0 to 500 across all five datasets. For
+a fixed word retrieval budget, proposition retrieval
+shows a higher success rate than sentence and pas-
+sage retrieval methods. The largest improvement of
+proposition retrieval over passage retrieval occurs
+within the range of 100-200 words, which corre-
+sponds to roughly 10 propositions, 5 sentences, or
+2 passages. As word count increases, the recall rate
+of the three granularities converges, encompassing
+all relevant information.
+Related Work
+Recent works on dense retrievers typically adopt
+a dual-encoder architecture (Yih et al., 2011;
+Reimers and Gurevych, 2019; Karpukhin et al.,
+2020; Ni et al., 2022).
+With dual-encoders,
+each query and document is encoded into a low-
+dimensional feature vector respectively, and their
+relevance is measured by a non-parametric similar-
+ity function between the embedding vectors (Muss-
+mann and Ermon, 2016). Due to the limited expres-
+sivity from the similarity function, dual encoder
+models often generalize poorly to new tasks with
+scarce training data (Thakur et al., 2021). Previous
+studies use techniques such as data augmentation
+(Wang et al., 2022; Yu et al., 2023a; Izacard et al.,
+2022; Gao and Callan, 2022; Lin et al., 2023; Dai
+et al., 2023), continual pre-training (Chang et al.,
+2020; Sachan et al., 2021; Oguz et al., 2022), task-
+aware training (Xin et al., 2022; Cheng et al., 2023),
+hybrid sparse-dense retrieval (Luan et al., 2021;
+Chen et al., 2022), or mixed strategy retrieval (Ma
+et al., 2022, 2023) and so on to improve cross-task
+generalization performance of dense retrievers.
+--- Page 8 ---
+
+Granularity
+
+Closed-book
+
+Unsupervised Dense Retrievers
+
+Proposition
+
+Proposition
+
+Supervised Dense Retrievers
+
+Proposition
+
+Proposition
+
+Table 5: Open-domain QA performance (EM = Exact Match) with LLaMA-2-7B model (Touvron et al., 2023). The
+context in the prompts is constructed by passage, sentence, or propositions limiting at l = 100 or 500 tokens. We
+prompt the LLaMA-2-7B model with four-shot demonstrations for each test case.
+
+GTR / SQuAD
+
+Proposition
+Figure 4: Recall of the gold answer in the retrieved text limited to first k words for the GTR retriever. Finer-grained
+retrieval has a higher recall across all numbers of words.
+The motivation of our work echoes in part with
+multi-vector retrieval, e.g. ColBERT (Khattab and
+Zaharia, 2020), DensePhrase (Lee et al., 2021a,b),
+ME-BERT (Luan et al., 2021), and MVR (Zhang
+et al., 2022), where the retrieval model learns to
+encode a candidate retrieval unit into multiple vec-
+tors to increase model expressivity and improve
+retrieval granularity (Seo et al., 2019; Humeau
+et al., 2019). Our work instead focuses on the
+setting where we do not update the dense retriever
+model or its parameters. We show that indexing
+the retrieval corpus by different granularity can be
+a simple and orthogonal strategy for improving the
+generalization of dense retrievers at inference time.
+In line with generating retrieval units from the
+original corpus, Sarthi et al. (2024) propose using
+generative summaries as additional retrieval units
+alongside the original text, enhancing queries with
+document-level understanding. In contrast, our
+work generates propositions to improve queries
+related to long-tailed entities. These approaches are
+complementary, as they address different aspects
+of retrieval enhancement.
+The use of propositions as a unit of text rep-
+resentation dates back to the Pyramid method in
+summarization evaluation (Nenkova and Passon-
+neau, 2004), where a model-generated summary
+is evaluated by each proposition. Proposition ex-
+traction from text has been a long-standing task,
+with earlier formulations focusing on a structured
+representation of propositions (Etzioni et al., 2008;
+Gildea and Jurafsky, 2000). More recent studies
+have found success in extracting free-text propo-
+sitions via few-shot prompting with LLMs (Min
+et al., 2023; Kamoi et al., 2023), or fine-tuning
+compact-sized models (Chen et al., 2023b).
+Retrieve-then-read, or more broadly retrieval
+augmented generation, has recently emerged as
+a popular paradigm for open-domain question an-
+swering (Lewis et al., 2021; Jiang et al., 2023; Asai
+et al., 2023). While earlier works provide up to
+the top 100 retrieved passages for the downstream
+--- Page 9 ---
+reader (Izacard and Grave, 2021; Kedia et al.,
+2022), the amount of context allowed is signifi-
+cantly reduced when using recent large language
+models (Touvron et al., 2023; Yu et al., 2023b), due
+to the limited context window length and inability
+to reason over long context (Liu et al., 2023). Re-
+cent efforts try to improve the quality of the reader
+context by filtering or compressing the retrieved
+documents (Wang et al., 2023; Xu et al., 2023).
+Our work offers a new perspective by changing
+the retrieval granularity, in order to achiev greater
+information density with a fixed context length.
+
+This paper studies how the choice of granularity
+for indexing a corpus, as well as the granularity
+used in the prompts, influences retrieval and down-
+stream QA performance. Our results show that
+retrieval by propositions outperforms passage-level
+and sentence-level retrieval on passage retrieval
+and downstream QA across five open-domain QA
+datasets. Our analysis shows that indexing a corpus
+with finer-grained units enhances the cross-task
+generalization of dense retrievers and increases
+the density of question-related information in the
+prompts. We hope that FACTOIDWIKI and our find-
+ings will facilitate future research on information
+retrieval and retrieval-augmented generation.
+Limitations
+The scope of our current study on the granular-
+ity of retrieval corpus has the following limita-
+tions. (1) Retrieval Corpus – Our study only fo-
+cuses on Wikipedia as the retrieval corpus, due to
+the fact that most open-domain QA datasets adopt
+Wikipedia as the retrieval corpus. (2) Types of
+dense retrievers evaluated – In the current version
+of the paper, we evaluate 6 types of popular dense
+retrievers, most of which follow the bi- or dual-
+encoder architecture. In future versions, we will
+include and discuss results on a broader range of
+dense retrievers. (3) Language – Our current study
+is limited to English Wikipedia only. We leave the
+exploration on other languages to future work.
+Ethical Considerations
+This article follows the ACL Code of Ethics. Our
+work is a foundational research on information
+retrieval. To the best of our knowledge, we do
+not find obvious risks related to malicious harmful
+effects, environmental impact, fairness considera-
+tions, or privacy considerations.
+Acknowledgements
+The authors sincerely appreciate anonymous re-
+viewers for helpful discussions and comments. The
+authors would like to thank Xuanyu Ben Zhou,
+Ruixin Hong, Ning Dai, and Linfeng Shen for valu-
+able feedback on the project. Xinran Zhao is sup-
+ported by the ONR Award N000142312840.

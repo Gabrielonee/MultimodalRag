@@ -1,0 +1,59 @@
+Open-Domain QA Datasets
+We experiment on five different open-domain QA
+datasets with Wikipedia as the retrieval source: Nat-
+ural Questions (NQ, Kwiatkowski et al., 2019),
+TriviaQA (TQA, Joshi et al., 2017), Web Ques-
+tions (WebQ, Berant et al., 2013), SQuAD (Ra-
+jpurkar et al., 2016), and Entity Questions (EQ,
+Sciavolino et al., 2021).
+
+Dense Retrieval Models
+We compare the performance of the four following
+supervised or unsupervised dense retriever mod-
+els. Here, supervised models refer to ones that
+have used human-labeled query-passage pairs as
+supervision during training, and vice versa.
+• SimCSE (Gao et al., 2021) is a BERT-base (De-
+vlin et al., 2019) encoder trained on unlabeled
+sentences sampled randomly from Wikipedia.
+SimCSE can be transferred to use as an unsu-
+pervised retriever (Chen et al., 2023b).
+• Contriever (Izacard et al., 2022) is an unsuper-
+vised retriever, instantiated with a BERT-base
+encoder. Contriever is contrastively trained by
+segment pairs constructed from unlabeled docu-
+ments from Wikipedia and web crawl data.
+• DPR (Karpukhin et al., 2020) is a dual-encoder
+BERT-base model fine-tuned on passage retrieval
+tasks directly using the question-passage pair la-
+bels from NQ, TQA, WebQ and SQuAD.
+• GTR (Ni et al., 2022) is a T5-base encoder (Raf-
+fel et al., 2020) pretrained on online forum QA
+data, and fine-tuned with question-passage pair
+labels on MS MARCO (Nguyen et al., 2016) and
+NQ datasets.
+
+Passage Retrieval Evaluation
+We evaluate the retrieval performance at the pas-
+sage level when the corpus is indexed at the pas-
+sage, sentence, or proposition level respectively.
+For sentence and proposition level retrieval, we
+follow the setting introduced in Lee et al. (2021b),
+where the score of the passage is based on the max-
+imum similarity score between the query and all
+sentences or propositions in a passage. In practice,
+we first retrieve a slightly larger number of text
+units, then map each unit to the source passage,
+and eventually return the top-k unique passages.
+We use Passage Recall@k as our evaluation metric,
+which is defined as the percentage of questions for
+which the correct answer is found within the top-k
+retrieved passages.
+To further understand how different retrieved
+passages affect the downstream QA. We use Fusion-
+in-Decoder (FiD, Izacard and Grave, 2021) model
+to extract answers from retrieved passages. We use
+a T5-large sized FiD model trained on NQ dataset
+in our experiments. The exact match (EM) score
+computes the percentage of questions for which the
+predicted answer exactly matches the ground truth.

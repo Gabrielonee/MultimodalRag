@@ -1,0 +1,53 @@
+We conduct experiments on five different open-
+domain QA datasets and empirically compare the
+performance of four dual-encoder retrievers when
+Wikipedia is indexed by passages, sentences, and
+our proposed propositions. Notably, our findings in-
+dicate that proposition-based retrieval outperforms
+sentence and passage-based retrieval, especially in
+terms of generalization, as discussed in §5. This
+suggests that propositions, being both compact and
+rich in context, enable dense retrievers to access
+precise information while maintaining adequate
+context. The average improvement over passage-
+based retrieval of Recall@20 is +10.1 on unsuper-
+vised dense retrievers and +2.7 on supervised re-
+trievers, even though these retrievers were directly
+trained on passage-level retrieval. Furthermore,
+we observe a distinct advantage of proposition-
+based retrieval in downstream QA performance
+when using retrieval-augmented language models,
+as elaborated in §6. Retrieval by finer-grained units
+inherently provides a higher density of question-
+relevant information. This finding implies using
+finer-grained units in the prompts achieves the same
+performance with a shorter input length, and hence,
+a faster inference time. Our main contributions are:
+--- Page 3 ---
+• We provide a systemic study on how retrieval
+granularity impacts retrieval and downstream
+task performance. We observe that the retrieval
+units have a significant impact on performance. • We introduce FACTOIDWIKI, a processed En-
+glish Wikipedia dump, where each page is seg-
+mented into multiple granularities: passages, sen-
+tences, and our proposed propositions. • We propose retrieval by proposition as an alter-
+native strategy, which achieves better retrieval
+and QA accuracy and generalization performance
+(with unsupervised retriever), compared to pas-
+sage or sentence as retrieval unit. Proposition as a Retrieval Unit
+The goal of our study is to understand how the gran-
+ularity of a retrieval corpus influences the dense
+retrieval models’ performance empirically. Aside
+from commonly-used retrieval units such as 100-
+word passages (Karpukhin et al., 2020) or sen-
+tences, we propose using proposition as an alterna-
+tive retrieval unit choice. Here, propositions repre-
+sent atomic expressions of meanings in text (Min
+et al., 2023) with three defining principles below. 1. Each proposition should correspond to a distinct
+piece of meaning in text, where the composition
+of all propositions would represent the seman-
+tics of the entire text. 2. A proposition should be minimal, i.e. it cannot
+be further split into separate propositions. 3. A proposition should be contextualized and self-
+contained (Choi et al., 2021). A proposition
+should include all the necessary context from the
+text (e.g.

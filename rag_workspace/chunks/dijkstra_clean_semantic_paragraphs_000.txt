@@ -1,0 +1,36 @@
+--- Page 1 ---
+Lebesgue: Jurnal Ilmiah Pendidikan Matematika, Matematika dan Statistika                                          p-ISSN 2721-8929 
+http://lebesgue.lppmbinabangsa.id/index.php/home 
+                         e-ISSN 2721-8937 
+Vol. 4, No. 2, Agustus 2023                                                                                                                 DOI Issue: 10.46306/lb.v4i2 
+DIJKSTRA ALGORITHM IN DETERMINING THE SHORTEST 
+ROUTE FOR DELIVERY SERVICE BY J&T EXPRESS IN BANDUNG
+
+Anie Lusiani1,* Siti Samsiyah Purwaningsih2 Euis Sartika3 
+1Department of Mechanical Engineering, Politeknik Negeri Bandung 
+2,3Department of Commercial Administration, Politeknik Negeri Bandung 
+Email: anie.lusiani@polban.ac.id.
+
+The determination of the shortest route can be done using various methods, one of which is the Dijkstra algorithm. 
+This algorithm is often used in routing problems with minimum weight in computer networks, communication 
+networks and transportation networks. There are several applications of the Djikstra algorithm, namely solving 
+the problem of the shortest path of neutrosophy, mapping tourism potential, and developing geographic 
+information systems in the health sector. In this research, Dijkstra algorithm will be applied to optimize the 
+mileage of the delivery of goods packages. Data and information namely the address, weight and number of 
+customer packages carried by a courier in one delivery trip are obtained from the drop point of PT. J&T Express 
+in Sarijadi area of Bandung City. Meanwhile, data about mileage is obtained from the Google Maps application. 
+All this data is used to construct an initial model graph that is a connected weighted graph, where the location of 
+a drop point or a customer is a vertex and a road connecting two locations is an edge on the graph. The weight 
+in this graph is the mileage from the drop point to the customers or from one customer to another. Then, the 
+Djikstra algorithm is run on this graph where the drop point is the starting point of the route, so that the courier 
+visits all customers and returns again to the drop point. The resulting route is a cycle in the graph which is the 
+shortest closed route at 1890 meters. 
+Keywords: connected weighted graph, Dijkstra algorithm
+
+--- Page 2 ---
+DIJKSTRA ALGORITHM IN DETERMINING THE SHORTEST ROUTE FOR DELIVERY SERVICE BY J&T 
+EXPRESS IN BANDUNG 
+Anie Lusiani, Siti Samsiyah Purwaningsih, Euis Sartika 
+Vol. 4, No. 2, Agustus 2023 hal. 940-948 
+DOI Artikel: 10.46306/lb.v4i2.337 
+INTRODUCTION

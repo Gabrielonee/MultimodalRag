@@ -1,0 +1,14 @@
+coreference) to interpret its meaning. The use of proposition as a retrieval unit is in-
+spired by a recent line of work (Min et al., 2023;
+Kamoi et al., 2023; Chen et al., 2023a,b), which
+finds success in representing and evaluating text
+semantics at the level of propositions. We demon-
+strate the concept of proposition and how a passage
+can be split into a set of propositions by an example
+on the left side of Figure 2. The passage contains
+three propositions, each of which corresponds to
+a distinct factoid about the Leaning Tower of Pisa:
+the angle before the restoration, the current angle,
+and the horizontal displacement. Within each proposition, necessary context from
+the passage is incorporated so that the meaning of
+the proposition can be interpreted independently of

@@ -1,0 +1,43 @@
+This paper studies how the choice of granularity
+for indexing a corpus, as well as the granularity
+used in the prompts, influences retrieval and down-
+stream QA performance. Our results show that
+retrieval by propositions outperforms passage-level
+and sentence-level retrieval on passage retrieval
+and downstream QA across five open-domain QA
+datasets. Our analysis shows that indexing a corpus
+with finer-grained units enhances the cross-task
+generalization of dense retrievers and increases
+the density of question-related information in the
+prompts. We hope that FACTOIDWIKI and our find-
+ings will facilitate future research on information
+retrieval and retrieval-augmented generation.
+Limitations
+The scope of our current study on the granular-
+ity of retrieval corpus has the following limita-
+tions. (1) Retrieval Corpus – Our study only fo-
+cuses on Wikipedia as the retrieval corpus, due to
+the fact that most open-domain QA datasets adopt
+Wikipedia as the retrieval corpus. (2) Types of
+dense retrievers evaluated – In the current version
+of the paper, we evaluate 6 types of popular dense
+retrievers, most of which follow the bi- or dual-
+encoder architecture. In future versions, we will
+include and discuss results on a broader range of
+dense retrievers. (3) Language – Our current study
+is limited to English Wikipedia only. We leave the
+exploration on other languages to future work.
+Ethical Considerations
+This article follows the ACL Code of Ethics. Our
+work is a foundational research on information
+retrieval. To the best of our knowledge, we do
+not find obvious risks related to malicious harmful
+effects, environmental impact, fairness considera-
+tions, or privacy considerations.
+Acknowledgements
+The authors sincerely appreciate anonymous re-
+viewers for helpful discussions and comments. The
+authors would like to thank Xuanyu Ben Zhou,
+Ruixin Hong, Ning Dai, and Linfeng Shen for valu-
+able feedback on the project. Xinran Zhao is sup-
+ported by the ONR Award N000142312840.

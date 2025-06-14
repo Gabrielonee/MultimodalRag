@@ -1,0 +1,91 @@
+Proposition
+Figure 3: Document retrieval recall vs. the frequency of the target entity in each question from the Entity Questions
+dataset. The frequency of each entity (i.e. smaller value ⇒less common entities, and vice versa) is estimated by
+the frequency of the entity in its top-1000 passage retrieved by BM25. On queries with less common entities, we
+observe that retrieving by proposition shows a larger advantage over retrieval by proposition.
+
+Granularity
+
+Unsupervised Dense Retrievers
+
+Proposition
+
+Proposition
+
+Supervised Dense Retrievers
+
+Proposition
+
+Proposition
+
+Table 4: Open-domain QA performance (Exact Match) using Fusion-in-Decoder model (Izacard and Grave, 2021)
+to extract answer from top-5 and top-20 passages retrieved on the index of passages, sentences, and propositions.
+with 16% relative improvements.
+
+Retrieval on Finer-grained Index ⇒
+Better Cross-Task Generalization
+Our results show the advantage of retrieval on
+proposition-level index in cross-task generalization
+settings. We observe that on SQuAD and Entity
+Questions, retrieval on the proposition-level index
+brings more performance gain over the passage-
+level index and sentence-level index.
+To better understand where the improvements
+can be attributed, we conduct an additional analysis
+on Entity Questions. As Entity Questions features
+questions targeting the properties of longer-tail enti-
+ties, we study how the retrieval performance under
+three different granularities is affected by the occu-
+rance of the target entity in question, i.e. whether
+the entity appears frequently in Wikipedia or not.
+We estimate the frequency of each entity with the
+following method. Given the surface form of an en-
+tity, we use BM25 to retrieve the top 1000 relevant
+passages from Wikipedia. We use the number of
+occurrences of the entity in its relevant passages as
+an estimate of its frequency. With the 20,000 test
+queries, around 25% of the target entities have an
+frequency value of less or equal to 3.
+Figure 3 shows the passage retrieval perfor-
+mance vs. the frequency of the target entity in
+each question. Across all four dense retrievers,
+we observe that retrieving by proposition shows a
+much larger advantage over retrieving by passages
+with questions targeting less common entities. As
+the frequency of entities increases, the performance
+gap decreases. Our findings indicate that the per-
+formance gain from retrieval by proposition can
+mostly be attributed to queries for long-tailed infor-
+mation. This echoes our observation that retrieval
+on proposition-level index improves the cross-task
+generalization performance of dense retrievers.
+
+Higher Passage Recall ⇒Higher
+Downstream QA Accuracy
+To further understand whether the passage retrieval
+on a finer-grained index achieves higher down-
+--- Page 7 ---
+stream QA performance, we extract the answer
+from the retrieved passage by a QA reader, Fusion-
+in-decoder. The results are shown in Table 4.
+Retrieval by proposition-level index achieves the
+highest average exact match (EM) on all four re-
+triever models. Apart from limited exceptions, the
+proposition-level index achieves the highest EM
+for most retrieval tasks and on most datasets. We
+observe that the trend of downstream QA perfor-
+mance is highly consistent with passage retrieval
+recall, suggesting higher passage recall implies bet-
+ter downstream QA performance.
+How Does Granularity Influence
+Retrieval-Augmented LMs?
+In this section, we study how the choice of different
+granularity used in the prompts affects the retrieval-
+augmented generation across open-domain QA
+tasks. To fairly compare different granularity with
+the same computation budget, we limit the num-
+ber of retrieved tokens for input to the language
+model at l = 100 or 500 tokens. Our results sug-
+gest that retrieval by finer-grained units enables a
+higher density of question-related information in
+the prompts, leading to better performance.

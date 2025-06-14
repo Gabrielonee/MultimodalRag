@@ -1,0 +1,53 @@
+--- Page 8 ---
+DIJKSTRA ALGORITHM IN DETERMINING THE SHORTEST ROUTE FOR DELIVERY SERVICE BY J&T 
+EXPRESS IN BANDUNG 
+Anie Lusiani, Siti Samsiyah Purwaningsih, Euis Sartika 
+Vol. 4, No. 2, Agustus 2023 hal. 940-948 
+DOI Artikel: 10.46306/lb.v4i2.337
+
+Optimization
+
+Multiobjective 
+Distribution
+
+Reconfiguration.” IEEE Transactions on Power Systems 30(2): 840–47. 
+Chartrand, Gary, Linda Lesniak, and Ping Zhang. 2016. Graphs & Digraphs. Textbooks in 
+Mathematics. CRC Press, Boca Raton, FL. 
+Das, Dyutimoy Nirupam, Rohan Sewani, Junwei Wang, and Manoj Kumar Tiwari. 2020. 
+“Synchronized Truck and Drone Routing in Package Delivery Logistics.” IEEE 
+Transactions on Intelligent Transportation Systems 22(9): 5772–82. 
+Deng, Yong, Yuxin Chen, Yajuan Zhang, and Sankaran Mahadevan. 2012. “Fuzzy Dijkstra 
+Algorithm for Shortest Path Problem under Uncertain Environment.” Applied Soft 
+Computing 12(3): 1231–37. 
+Ginting, Hagai Nuansa, Andrew Brian Osmond, and Annisa Aditsania. 2019. “Item Delivery 
+Simulation Using Dijkstra Algorithm for Solving Traveling Salesman Problem.” In 
+Journal of Physics: Conference Series, IOP Publishing, 12068. 
+Huang, Shan-Huen, Ying-Hua Huang, Carola A Blazquez, and Chia-Yi Chen. 2022. “Solving 
+the Vehicle Routing Problem with Drone for Delivery Services Using an Ant Colony 
+Optimization Algorithm.” Advanced Engineering Informatics 51: 101536. 
+Liu, Shan et al. 2020. “Integrating Dijkstra’s Algorithm into Deep Inverse Reinforcement 
+Learning for Food Delivery Route Planning.” Transportation Research Part E: Logistics 
+and Transportation Review 142: 102070. 
+Lusiani, Anie, Euis Sartika, Endang Habinuddin, et al. 2021. “Algoritma Prim Dalam 
+Penentuan Lintasan Terpendek Dan Lintasan Tercepat Pada Pendistribusian Logistik 
+Bulog Jawa Barat.” In Prosiding Industrial Research Workshop and National Seminar, ,
+
+Lusiani, Anie, Euis Sartika, Agus Binarto, et al. 2021. “Determination of the Fastest Path on 
+Logistics Distribution by Using Dijkstra Algorithm.” In 2nd International Seminar of 
+Science and Applied Technology (ISSAT 2021), Atlantis Press, 246–50. 
+Lusiani, Anie, Edy Tri Baskoro, and Suhadi Wido Saputro. 2017. “On Size Multipartite 
+Ramsey Numbers for Stars versus Paths and Cycles.” Electronic Journal of Graph Theory 
+and Applications 5(1): 43–50. http://www.ejgta.org/index.php/ejgta/article/view/318. 
+Lusiani, Anie, Euis Sartika, Agus Binarto, and Endang Habinuddin. 2020. “Compatible Graphs 
+on Traffic Lights Waiting Time Optimization.” In Proceedings of the International 
+Seminar of Science and Applied Technology (ISSAT 2020), Paris, France: Atlantis Press, 
+467–71. https://www.atlantis-press.com/article/125949846. 
+Neumann, Frank. 2004. “Expected Runtimes of Evolutionary Algorithms for the Eulerian 
+Cycle Problem.” In Proceedings of the 2004 Congress on Evolutionary Computation 
+(IEEE Cat. No. 04TH8753), IEEE, 904–10. 
+Osaba, Eneko et al. 2018. “Multi-Objective Optimization of Bike Routes for Last-Mile Package 
+Delivery with Drop-Offs.” In 2018 21st International Conference on Intelligent 
+Transportation Systems (ITSC), IEEE, 865–70. 
+Ramadhan, Zuhri, A Putera Utama Siahaan, and M Mesran. 2018. “Prim and Floyd-Warshall 
+Comparative Algorithms in Shortest Path Problem.” In Proceedings of the Joint Workshop 
+KO2PI and The 1st International Conference on Advance & Scientific Innovation, , 47–

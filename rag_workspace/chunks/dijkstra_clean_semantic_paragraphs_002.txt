@@ -1,0 +1,32 @@
+As an application in graph theory, a study has been conducted by Ginting et al. in 2019 
+on delivery simulation using the Dijkstra algorithm to solve the problem of traveling salesmen 
+(Ginting, Osmond, and Aditsania 2019). Dijkstra algorithm can also be used to determine 
+current policies and calculate IRL (inverse reinforcement learning) gradients in considering the 
+characteristics of food delivery routes (Liu et al. 2020), determine the fastest path in logistics 
+distribution by Bulog in the West Java region (Lusiani, Sartika, Binarto, et al. 2021), and solve 
+the shortest path problem with fuzzy arc lengths (Deng et al. 2012). The application of graphs 
+as models to a problem is not only in determining the shortest path and the fastest path. A graf 
+is also used as a model on traffic congestion problems, such as determining waiting times in 
+overcoming congestion at the intersection of Toll-Pasteur Bandung road (Lusiani et al. 2020). 
+In this article, we will determine the shortest route for delivery service by PT. J&T Express in 
+Bandung using Dijkstra algorithm.
+
+--- Page 3 ---
+DIJKSTRA ALGORITHM IN DETERMINING THE SHORTEST ROUTE FOR DELIVERY SERVICE BY J&T 
+EXPRESS IN BANDUNG 
+Anie Lusiani, Siti Samsiyah Purwaningsih, Euis Sartika 
+Vol. 4, No. 2, Agustus 2023 hal. 940-948 
+DOI Artikel: 10.46306/lb.v4i2.337
+
+The model to be analyzed is the case of a package delivery service carried out by a 
+courier from a drop point of PT. J&T Express which is located at Jl. Sarijadi Raya No. 90, 
+Sukarasa, Kec. Sukasari, Bandung City. The number of customers served by a courier is more 
+than 15 customers in one delivery trip depending on the density of demand. In this case, we 
+will analysis for 17 customers in 12 locations in the Gegerkalong Hilir and Sarijadi areas. 
+Meanwhile, data about mileage is obtained from the Google Maps application. All this data is 
+used to construct an initial model graph which is a connected weighted graph, where the 
+location of the drop point or a customer is a vertex and the road connecting two locations is an 
+edge of the graph. The weight in this graph is the distance traveled from the drop point to the 
+customers or from one customer to another. We call the distance traveled is the mileage. Then, 
+the Djikstra algorithm is run on this graph where the drop point is the starting point of the route, 
+such that the courier visits all customers and returns again to the drop point.

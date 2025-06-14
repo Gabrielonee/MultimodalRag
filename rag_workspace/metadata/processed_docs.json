@@ -1,0 +1,26 @@
+{
+  "16df9323f053c7755ecefb25c2b7a771": {
+    "pdf_path": "rag_workspace/uploads/rag.pdf",
+    "pdf_hash": "16df9323f053c7755ecefb25c2b7a771",
+    "processed_at": "1749898859.396031",
+    "chunk_count": 26,
+    "file_size": 1662567,
+    "status": "processed"
+  },
+  "c9cfae9c0fbf9d220ca7a0ba0d2a00f0": {
+    "pdf_path": "rag_workspace/uploads/rag2.pdf",
+    "pdf_hash": "c9cfae9c0fbf9d220ca7a0ba0d2a00f0",
+    "processed_at": "1749902299.449111",
+    "chunk_count": 12,
+    "file_size": 935698,
+    "status": "processed"
+  },
+  "016ed989de2796a762bd969ec09a4264": {
+    "pdf_path": "rag_workspace/uploads/dijkstra.pdf",
+    "pdf_hash": "016ed989de2796a762bd969ec09a4264",
+    "processed_at": "1749903155.667853",
+    "chunk_count": 9,
+    "file_size": 446453,
+    "status": "processed"
+  }
+}

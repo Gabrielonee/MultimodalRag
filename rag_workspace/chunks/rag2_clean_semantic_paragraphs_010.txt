@@ -1,0 +1,80 @@
+Granularity
+
+Closed-book
+
+Unsupervised Dense Retrievers
+
+Proposition
+
+Proposition
+
+Supervised Dense Retrievers
+
+Proposition
+
+Proposition
+
+Table 5: Open-domain QA performance (EM = Exact Match) with LLaMA-2-7B model (Touvron et al., 2023). The
+context in the prompts is constructed by passage, sentence, or propositions limiting at l = 100 or 500 tokens. We
+prompt the LLaMA-2-7B model with four-shot demonstrations for each test case.
+
+GTR / SQuAD
+
+Proposition
+Figure 4: Recall of the gold answer in the retrieved text limited to first k words for the GTR retriever. Finer-grained
+retrieval has a higher recall across all numbers of words.
+The motivation of our work echoes in part with
+multi-vector retrieval, e.g. ColBERT (Khattab and
+Zaharia, 2020), DensePhrase (Lee et al., 2021a,b),
+ME-BERT (Luan et al., 2021), and MVR (Zhang
+et al., 2022), where the retrieval model learns to
+encode a candidate retrieval unit into multiple vec-
+tors to increase model expressivity and improve
+retrieval granularity (Seo et al., 2019; Humeau
+et al., 2019). Our work instead focuses on the
+setting where we do not update the dense retriever
+model or its parameters. We show that indexing
+the retrieval corpus by different granularity can be
+a simple and orthogonal strategy for improving the
+generalization of dense retrievers at inference time.
+In line with generating retrieval units from the
+original corpus, Sarthi et al. (2024) propose using
+generative summaries as additional retrieval units
+alongside the original text, enhancing queries with
+document-level understanding. In contrast, our
+work generates propositions to improve queries
+related to long-tailed entities. These approaches are
+complementary, as they address different aspects
+of retrieval enhancement.
+The use of propositions as a unit of text rep-
+resentation dates back to the Pyramid method in
+summarization evaluation (Nenkova and Passon-
+neau, 2004), where a model-generated summary
+is evaluated by each proposition. Proposition ex-
+traction from text has been a long-standing task,
+with earlier formulations focusing on a structured
+representation of propositions (Etzioni et al., 2008;
+Gildea and Jurafsky, 2000). More recent studies
+have found success in extracting free-text propo-
+sitions via few-shot prompting with LLMs (Min
+et al., 2023; Kamoi et al., 2023), or fine-tuning
+compact-sized models (Chen et al., 2023b).
+Retrieve-then-read, or more broadly retrieval
+augmented generation, has recently emerged as
+a popular paradigm for open-domain question an-
+swering (Lewis et al., 2021; Jiang et al., 2023; Asai
+et al., 2023). While earlier works provide up to
+the top 100 retrieved passages for the downstream
+--- Page 9 ---
+reader (Izacard and Grave, 2021; Kedia et al.,
+2022), the amount of context allowed is signifi-
+cantly reduced when using recent large language
+models (Touvron et al., 2023; Yu et al., 2023b), due
+to the limited context window length and inability
+to reason over long context (Liu et al., 2023). Re-
+cent efforts try to improve the quality of the reader
+context by filtering or compressing the retrieved
+documents (Wang et al., 2023; Xu et al., 2023).
+Our work offers a new perspective by changing
+the retrieval granularity, in order to achiev greater
+information density with a fixed context length.

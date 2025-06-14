@@ -1,0 +1,18 @@
+Ramírez-Villamil, Angie et al. 2022. “Integrating Clustering Methodologies and Routing 
+Optimization Algorithms for Last-Mile Parcel Delivery.” In Computational Logistics: 
+13th International Conference, ICCL 2022, Barcelona, Spain, September 21–23, 2022, 
+Proceedings, Springer, 275–87. 
+Wirabudi, Andri Agustav, Lia Hafiza, and Nurwan Reza Fachrurrozi. 2022. “Design
+
+--- Page 9 ---
+DIJKSTRA ALGORITHM IN DETERMINING THE SHORTEST ROUTE FOR DELIVERY SERVICE BY J&T 
+EXPRESS IN BANDUNG 
+Anie Lusiani, Siti Samsiyah Purwaningsih, Euis Sartika 
+Vol. 4, No. 2, Agustus 2023 hal. 940-948 
+DOI Artikel: 10.46306/lb.v4i2.337 
+Autonomous Drone Control For Delivery Package Using Prim Algorithm and Waypoint 
+Method.” In 2022 13th International Conference on Information and Communication 
+Technology Convergence (ICTC), IEEE, 1183–88. 
+Zhou, Zhifeng, Rong Chen, Jian Gao, and Hu Xing. 2022. “A Multi-Objective Optimization 
+Approach to Package Delivery by the Crowd of Occupied Taxis.” Knowledge and 
+Information Systems 64(10): 2713–36.
